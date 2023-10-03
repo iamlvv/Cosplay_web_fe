@@ -471,6 +471,7 @@ export interface PasswordChangeResponse {
 export interface AuthResponse {
   access_token: string;
   permissions: string[];
+  userId: string;
 }
 
 export interface OTPResponse {

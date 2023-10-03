@@ -30,7 +30,10 @@ function LoginForm() {
   const isCheckout = router.pathname.includes('checkout');
   const { mutate: login, isLoading, serverError, setServerError } = useLogin();
 
-  function onSubmit({ email, password }: LoginUserInput) {
+  function onSubmit({ email, password }: LoginUserInput, e: any) {
+    e.preventDefault();
+    console.log('login');
+    console.log(email, password);
     login({
       email,
       password,

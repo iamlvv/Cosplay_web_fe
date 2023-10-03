@@ -247,7 +247,8 @@ class PreknowClient {
       ),
   };
   users = {
-    me: () => HttpClient.get<User>('http://localhost:5001/auth/me'),
+    me: (input: string) =>
+      HttpClient.post<User>('http://localhost:5001/auth/me', input),
     update: (user: UpdateUserInput) =>
       HttpClient.put<User>(`${API_ENDPOINTS.USERS}/${user.id}`, user),
     login: (input: LoginUserInput) =>

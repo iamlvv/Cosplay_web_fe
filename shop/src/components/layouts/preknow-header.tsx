@@ -94,14 +94,14 @@ const PreknowHeader = () => {
           </ul>
           {/* <CartCounterIconButton /> */}
           <div className="flex items-center space-x-4 rtl:space-x-reverse">
-            <a
+            {/* <a
               href={`${process.env.NEXT_PUBLIC_ADMIN_URL}/register`}
               target="_blank"
               rel="noreferrer"
               className="inline-flex h-9 shrink-0 items-center justify-center rounded border border-accent px-3 py-0 text-sm font-semibold leading-none text-accent outline-none transition duration-300 ease-in-out hover:bg-accent hover:text-light focus:shadow focus:outline-none focus:ring-1 focus:ring-accent-700"
             >
               {t('text-become-seller')}
-            </a>
+            </a> */}
             {isAuthorize ? <AuthorizedMenu /> : <JoinButton />}
           </div>
         </div>

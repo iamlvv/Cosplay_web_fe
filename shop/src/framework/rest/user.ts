@@ -14,7 +14,7 @@ import { useAtom } from 'jotai';
 import { signOut as socialLoginSignOut } from 'next-auth/react';
 import { useToken } from '@/lib/hooks/use-token';
 import { API_ENDPOINTS } from './client/api-endpoints';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type {
   RegisterUserInput,
   ChangePasswordUserInput,
@@ -30,20 +30,34 @@ import { clearCheckoutAtom } from '@/store/checkout';
 
 export function useUser() {
   const [isAuthorized] = useAtom(authorizationAtom);
-  const { data, isLoading, error } = useQuery(
-    [API_ENDPOINTS.USERS_ME],
-    preknowClient.users.me,
-    {
-      enabled: isAuthorized,
-      onError: (err) => {
-        console.log(err);
-      },
-    }
-  );
+  const [userId, setUserId] = useState<string | null>(null);
 
-  console.log('me: ', data);
+  useEffect(() => {
+    setUserId(localStorage.getItem('userId'));
+  }, [isAuthorized]);
+  // const { data, isLoading, error } = useQuery(
+  //   [API_ENDPOINTS.USERS_ME],
+  //   preknowClient.users.me(userId),
+  //   {
+  //     enabled: isAuthorized,
+  //     onError: (err) => {
+  //       console.log(err);
+  //     },
+  //   }
+  // );
+
+  const { mutate, isLoading, error } = useMutation(preknowClient.users.me, {
+    onSuccess: (data) => {
+      console.log('data: ', data);
+    },
+    onError: (error) => {
+      console.log('error: ', error);
+    },
+  });
+
+  console.log('me: ', mutate);
   //TODO: do some improvement here
-  return { me: data, isLoading, error, isAuthorized };
+  return { me: mutate, isLoading, error, isAuthorized };
 }
 
 export const useDeleteAddress = () => {
@@ -123,6 +137,7 @@ export function useLogin() {
       setToken(data.access_token);
       setAuthorized(true);
       closeModal();
+      localStorage.setItem('userId', data.userId);
     },
     onError: (error: Error) => {
       console.log(error.message);
