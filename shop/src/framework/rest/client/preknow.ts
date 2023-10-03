@@ -265,7 +265,10 @@ class PreknowClient {
     OtpLogin: (input: OtpLoginInputType) =>
       HttpClient.post<AuthResponse>(API_ENDPOINTS.OTP_LOGIN, input),
     register: (input: RegisterUserInput) =>
-      HttpClient.post<AuthResponse>(API_ENDPOINTS.USERS_REGISTER, input),
+      HttpClient.post<AuthResponse>(
+        'http://localhost:5001/auth/register',
+        input
+      ),
     forgotPassword: (input: ForgotPasswordUserInput) =>
       HttpClient.post<PasswordChangeResponse>(
         API_ENDPOINTS.USERS_FORGOT_PASSWORD,

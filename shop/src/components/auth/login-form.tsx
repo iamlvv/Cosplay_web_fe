@@ -32,8 +32,6 @@ function LoginForm() {
 
   function onSubmit({ email, password }: LoginUserInput, e: any) {
     e.preventDefault();
-    console.log('login');
-    console.log(email, password);
     login({
       email,
       password,

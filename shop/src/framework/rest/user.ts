@@ -141,6 +141,7 @@ export function useLogin() {
     },
     onError: (error: Error) => {
       console.log(error.message);
+      toast.error(t('error-something-wrong'));
     },
   });
 
@@ -278,32 +279,38 @@ export function useRegister() {
   const { setToken } = useToken();
   const [_, setAuthorized] = useAtom(authorizationAtom);
   const { closeModal } = useModalAction();
-  let [formError, setFormError] = useState<Partial<RegisterUserInput> | null>(
-    null
+  let [serverError, setServerError] = useState<string | null>(null);
+  // let [formError, setFormError] = useState<Partial<RegisterUserInput> | null>(
+  //   null
+  // );
+
+  const { mutate, isLoading, error } = useMutation(
+    preknowClient.users.register,
+    {
+      onSuccess: (data) => {
+        // if (!data.access_token) {
+        //   setServerError('error-credential-wrong');
+        //   toast.error(t('error-credential-wrong'));
+        //   return;
+        // }
+        setToken(data.access_token);
+        setAuthorized(true);
+        localStorage.setItem('userId', data.userId);
+        closeModal();
+      },
+      onError: (error: Error) => {
+        // const {
+        //   response: { data },
+        // }: any = error ?? {};
+
+        // setFormError(data);
+        console.log(error.message);
+        toast.error(t('error-something-wrong'));
+      },
+    }
   );
 
-  const { mutate, isLoading } = useMutation(client.users.register, {
-    onSuccess: (data) => {
-      if (data?.token && data?.permissions?.length) {
-        setToken(data?.token);
-        setAuthorized(true);
-        closeModal();
-        return;
-      }
-      if (!data.token) {
-        toast.error(t('error-credential-wrong'));
-      }
-    },
-    onError: (error) => {
-      const {
-        response: { data },
-      }: any = error ?? {};
-
-      setFormError(data);
-    },
-  });
-
-  return { mutate, isLoading, formError, setFormError };
+  return { mutate, isLoading, serverError, setServerError };
 }
 
 export function useLogout() {
