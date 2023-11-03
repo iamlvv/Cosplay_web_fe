@@ -1,9 +1,7 @@
-import { Routes } from '@/config/routes';
 import { useUser } from '@/framework/user';
 import dynamic from 'next/dynamic';
-import Link from 'next/link';
 const UnverifiedItemList = dynamic(
-  () => import('@/components/checkout/preknow/unverified-item-list')
+  () => import('@/components/checkout/finish/unverified-item-list')
 );
 
 export const RightSideView = ({
@@ -17,10 +15,9 @@ export const RightSideView = ({
     <>
       <div className="mb-6 w-full rounded border bg-light p-4 shadow">
         <div className="mb-5 flex justify-between">
-          <h2 className="text-xl font-semibold text-slate-600">Giao tới</h2>
-          <Link href={Routes.profile}>
-            <a className="text-accent">Thay đổi</a>
-          </Link>
+          <h2 className="text-xl font-semibold text-slate-600">
+            Thông tin người nhận
+          </h2>
         </div>
         <div>
           <div className="mb-1 flex justify-between text-base font-semibold text-heading">

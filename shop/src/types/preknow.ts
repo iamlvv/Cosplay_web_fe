@@ -273,29 +273,12 @@ export interface Settings {
 }
 
 export interface Order {
-  id: number | string;
-  tracking_number: string;
-  customer_id: number | string;
-  // customer?: Maybe<User>;
-  status: OrderStatus;
+  userId: string;
+  transactionId: string;
+  items: any[];
+  paymentMethod: PaymentGatewayType;
   amount: number;
-  children: Order[];
-  sales_tax: number;
-  total: number;
-  paid_total: number;
-  payment_id?: string;
-  payment_gateway?: string;
-  coupon?: Coupon;
-  discount?: number;
-  delivery_fee?: number;
-  delivery_time?: string;
-  products: Product[];
-  created_at: Date;
-  updated_at: Date;
-  billing_address?: Address;
-  shipping_address?: Address;
-  refund: Refund;
-  language?: string;
+  createdAt: Date;
 }
 
 export interface VerifyCouponInputType {
@@ -398,7 +381,7 @@ export interface Address {
 }
 
 export interface User {
-  id: string;
+  _id: string;
   name: string;
   email: string;
   contact?: string;
@@ -416,11 +399,11 @@ export interface User {
     bio?: string;
     avatar?: Attachment;
   };
-  address: Address[];
+  address: string;
 }
 
 export interface UpdateUserInput extends Partial<User> {
-  id: string;
+  _id: string;
 }
 
 export interface LoginUserInput {
@@ -471,7 +454,6 @@ export interface PasswordChangeResponse {
 export interface AuthResponse {
   access_token: string;
   permissions: string[];
-  userId: string;
 }
 
 export interface OTPResponse {
@@ -532,35 +514,23 @@ export interface CardInput {
   email?: string;
 }
 
-enum PaymentGatewayType {
-  STRIPE = 'Stripe',
-  CASH_ON_DELIVERY = 'Cash on delivery',
-  CASH = 'Cash',
-  FULL_WALLET_PAYMENT = 'Full wallet payment',
+export enum DeliveryMethodType {
+  SAVE = 'SAVE',
+  FAST = 'FAST',
+  EXPRESS = 'EXPRESS',
+}
+
+export enum PaymentGatewayType {
+  CASH_ON_DELIVERY = 'CASH_ON_DELIVERY',
+  MOMO = 'MOMO',
+  ZALOPAY = 'ZALOPAY',
+  VNPAY = 'VNPAY',
 }
 
 export interface CreateOrderInput {
-  customer_contact: string;
-  status: string;
-  products: ConnectProductOrderPivot[];
+  paymentMethod: PaymentGatewayType;
+  items: any[];
   amount: number;
-  sales_tax: number;
-  total: number;
-  paid_total: number;
-  payment_id?: string;
-  payment_gateway: PaymentGatewayType;
-  coupon_id?: string;
-  shop_id?: string;
-  customer_id?: string;
-  discount?: number;
-  use_wallet_points?: boolean;
-  delivery_fee?: number;
-  delivery_time: string;
-  card: CardInput;
-  token?: string;
-  billing_address: Address;
-  shipping_address: Address;
-  language?: string;
 }
 
 export interface Review {

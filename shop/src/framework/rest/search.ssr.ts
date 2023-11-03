@@ -1,16 +1,12 @@
+import client from '@/framework/client';
+import { API_ENDPOINTS } from '@/framework/client/api-endpoints';
+import { TYPES_PER_PAGE } from '@/framework/client/variables';
+import { CategoryQueryOptions, TypeQueryOptions } from '@/types';
 import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import invariant from 'tiny-invariant';
 import { QueryClient } from 'react-query';
-import { API_ENDPOINTS } from '@/framework/client/api-endpoints';
 import { dehydrate } from 'react-query/hydration';
-import client from '@/framework/client';
-import {
-  CategoryQueryOptions,
-  SettingsQueryOptions,
-  TypeQueryOptions,
-} from '@/types';
-import { TYPES_PER_PAGE } from '@/framework/client/variables';
+import invariant from 'tiny-invariant';
 
 export const getServerSideProps: GetServerSideProps = async ({
   locale,
@@ -19,10 +15,10 @@ export const getServerSideProps: GetServerSideProps = async ({
   invariant(params, 'params is required');
   const { searchType } = params;
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(
-    [API_ENDPOINTS.SETTINGS, { language: locale }],
-    ({ queryKey }) => client.settings.all(queryKey[1] as SettingsQueryOptions)
-  );
+  // await queryClient.prefetchQuery(
+  //   [API_ENDPOINTS.SETTINGS, { language: locale }],
+  //   ({ queryKey }) => client.settings.all(queryKey[1] as SettingsQueryOptions)
+  // );
 
   await queryClient.prefetchQuery(
     [API_ENDPOINTS.TYPES, { limit: TYPES_PER_PAGE, language: locale }],
@@ -33,7 +29,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     type: searchType,
     limit: 1000,
     parent: 'null',
-    language: locale
+    language: locale,
   };
 
   await queryClient.prefetchQuery(

@@ -10,7 +10,7 @@ import getStripe from '@/lib/get-stripejs';
 import { useAtom } from 'jotai';
 import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
-import { toast } from 'react-toastify';
+import {toast} from "react-toastify";
 
 const StripeForm: React.FC = () => {
   const { t } = useTranslation('common');
@@ -35,7 +35,7 @@ const StripeForm: React.FC = () => {
 
     // Use your card Element with other Stripe.js APIs
     const { error, token } = await stripe.createToken(cardElement);
-    console.log('token', token);
+
     if (error) {
       setLoading(false);
       return;
@@ -56,7 +56,7 @@ const StripeForm: React.FC = () => {
         type="submit"
         loading={loading}
         disabled={!stripe}
-        className="StripePay mt-5 bg-gray-800 transition-colors hover:bg-gray-900 ltr:ml-auto rtl:mr-auto"
+        className="StripePay mt-5 ltr:ml-auto rtl:mr-auto transition-colors bg-gray-800 hover:bg-gray-900"
       >
         {t('text-confirm')}
       </Button>

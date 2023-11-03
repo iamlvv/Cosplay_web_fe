@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/inline-script-id */
 import type { AppProps } from 'next/app';
 import { appWithTranslation } from 'next-i18next';
 import { SessionProvider } from 'next-auth/react';
@@ -16,6 +17,7 @@ import { NextPageWithLayout } from '@/types';
 import QueryProvider from '@/framework/client/query-provider';
 import { getDirection } from '@/lib/constants';
 import { useRouter } from 'next/router';
+import Script from 'next/script';
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
@@ -40,6 +42,24 @@ function CustomApp({
             <ModalProvider>
               <CartProvider>
                 <>
+                  {/* Google tag (gtag.js)  */}
+                  <Script
+                    strategy="afterInteractive"
+                    src="https://www.googletagmanager.com/gtag/js?id=G-QWDLH3J3WL"
+                  ></Script>
+                  <Script
+                    id="google-analytics"
+                    strategy="afterInteractive"
+                    dangerouslySetInnerHTML={{
+                      __html: `
+                      window.dataLayer = window.dataLayer || [];
+                      function gtag(){dataLayer.push(arguments);}
+                      gtag('js', new Date());
+
+                      gtag('config', 'G-QWDLH3J3WL');
+                    `,
+                    }}
+                  />
                   <DefaultSeo />
                   {authenticationRequired ? (
                     <PrivateRoute>

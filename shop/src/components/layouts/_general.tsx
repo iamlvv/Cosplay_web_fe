@@ -20,7 +20,6 @@ export default function GeneralLayout({
     return (
       <div className="flex min-h-screen flex-col bg-gray-100 transition-colors duration-150">
         <PreknowHeader />
-
         <div className="min-h-screen">{children}</div>
         <PreknowFooter />
         <MobileNavigation>

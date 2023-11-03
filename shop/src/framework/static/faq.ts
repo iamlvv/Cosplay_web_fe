@@ -1,18 +1,32 @@
 export const faq = [
   {
-    title: 'faq-one-title',
-    content: 'faq-one-content',
+    title: 'Làm thế nào để đặt hàng qua website PreKnow?',
+    content: `Để Đặt hàng:
+    Bước 1: Đăng nhập vào tài khoản PreKnow
+    Bước 2: Tìm kiếm sản phẩm
+    theo 2 cách:
+    Gõ tên sản phẩm vào thanh tìm kiếm.
+    Tìm theo danh mục
+    Bước 3: Thêm sản phẩm vào giỏ hàng.
+    Bước 4: Kiểm tra giỏ hàng và đặt hàng.`,
   },
   {
-    title: 'faq-two-title',
-    content: 'faq-two-content',
+    title: 'Cách để đăng nhập vào tài khoản PreKnow',
+    content: `Bạn vui lòng chọn nút Đăng nhập ở góc phải website để đăng nhập vào tài khoản đã tạo, hoặc đăng nhập thông qua tài khoản Google.
+
+    Bước 1: Chọn vào mục đăng nhập.
+    Bước 2: Điền thông tin email và mật khẩu hoặc chuyển sang hình thức đăng nhập khác. Bấm nút Đăng nhập.`,
   },
   {
-    title: 'faq-three-title',
-    content: 'faq-three-content',
+    title: 'Làm cách nào để trả hàng do không còn nhu cầu?',
+    content:
+      'PreKnow rất tiếc sẽ không áp dụng đổi - trả theo nhu cầu của khách hàng khi sản phẩm không lỗi và cũng không đáp ứng các điều kiện đã quy định trong Chính sách đổi trả.',
   },
   {
-    title: 'faq-four-title',
-    content: 'faq-four-content',
+    title: 'Cách tính phí vận chuyển',
+    content: `Phí vận chuyển tại PreKnow được tính dựa theo:
+    Khối lượng và kích thước đóng gói của các sản phẩm trong đơn hàng.
+    Khoảng cách địa lý giữa địa chỉ nhận hàng và kho cung cấp sản phẩm từ người bán.
+    Để biết chính xác phí vận chuyển, sau khi hoàn tất giỏ hàng, đến bước Thanh toán, hệ thống sẽ hiển thị phí vận chuyển theo từng sản phẩm và hình thức giao hàng quý khách chọn.`,
   },
 ];

@@ -1,5 +1,5 @@
 import Link from '@/components/ui/link';
-import { PreknowSiteSettings } from '@/config/site';
+import { siteSettings } from '@/config/site';
 import { useTranslation } from 'next-i18next';
 import PreknowAddressIcon from '../icons/preknow-address';
 import PreknowFooterLogo from '../icons/preknow-footer-logo';
@@ -14,7 +14,7 @@ const PreknowFooter = () => {
       <div className="flex w-full flex-col border-gray-800 bg-white px-5 pb-14 md:px-10 lg:px-[50px] xl:px-16">
         {/* Top */}
         <div className="grid w-full grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6 border-t pt-16 md:grid-cols-3 lg:pt-24 lg:pb-16 xl:grid-cols-[repeat(auto-fill,minmax(220px,1fr))] xl:gap-8 2xl:grid-cols-5">
-          {PreknowSiteSettings.footer.menus.map((menu, idx) => (
+          {siteSettings.footer.menus.map((menu, idx) => (
             <div className="flex flex-col" key={`${menu.title}-${idx}`}>
               <h3 className="mt-3 mb-4 text-xl font-semibold text-accent lg:mb-7">
                 {menu.title}
@@ -56,17 +56,17 @@ const PreknowFooter = () => {
 
         <address>
           <PreknowMailIcon className="mr-1 inline" />
-          admin.preknow@gmail.com
+          {siteSettings.footer.email}
         </address>
 
         <address>
           <PreknowPhoneIcon className="mr-1 inline" />
-          (917) 112-245
+          {siteSettings.footer.phone}
         </address>
 
         <address>
           <PreknowAddressIcon className="mr-1 inline" />
-          KTX Khu A - ĐHQG HCM
+          {siteSettings.footer.address}
         </address>
       </div>
     </>

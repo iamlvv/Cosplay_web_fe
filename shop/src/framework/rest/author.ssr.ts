@@ -1,12 +1,11 @@
-import type { Author, SettingsQueryOptions } from '@/types';
+import type { Author } from '@/types';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { QueryClient } from 'react-query';
+import { dehydrate } from 'react-query/hydration';
 import invariant from 'tiny-invariant';
 import client from './client';
 import { PRODUCTS_PER_PAGE } from './client/variables';
-import { QueryClient } from 'react-query';
-import { API_ENDPOINTS } from '@/framework/client/api-endpoints';
-import { dehydrate } from 'react-query/hydration';
 
 // This function gets called at build time
 type ParsedQueryParams = {
@@ -33,13 +32,16 @@ export const getStaticProps: GetStaticProps<
   ParsedQueryParams
 > = async ({ params, locale }) => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(
-    [API_ENDPOINTS.SETTINGS, { language: locale }],
-    ({ queryKey }) => client.settings.all(queryKey[1] as SettingsQueryOptions)
-  );
+  // await queryClient.prefetchQuery(
+  //   [API_ENDPOINTS.SETTINGS, { language: locale }],
+  //   ({ queryKey }) => client.settings.all(queryKey[1] as SettingsQueryOptions)
+  // );
 
   try {
-    const author = await client.authors.get({slug: params!.author, language: locale});
+    const author = await client.authors.get({
+      slug: params!.author,
+      language: locale,
+    });
     return {
       props: {
         author,

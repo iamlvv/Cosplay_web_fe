@@ -48,7 +48,6 @@ export interface QueryOptions {
   language: string;
   page?: number;
   limit?: number;
-  query?: string;
 }
 
 export interface PaginatorInfo<T> {
@@ -105,6 +104,7 @@ export interface CategoryQueryOptions extends QueryOptions {
   language: string;
   parent: string | null;
   type: string;
+  query?: string;
 }
 
 export interface TagQueryOptions extends QueryOptions {
@@ -484,7 +484,6 @@ export interface PasswordChangeResponse {
 export interface AuthResponse {
   token: string;
   permissions: string[];
-  userId: string;
 }
 
 export interface OTPResponse {

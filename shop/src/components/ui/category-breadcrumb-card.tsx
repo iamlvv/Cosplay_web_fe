@@ -17,9 +17,9 @@ const BreadcrumbWithIndicator: React.FC<BreadcrumbButtonProps> = ({
   onClick,
 }) => (
   <>
-    <span className="relative h-[32px] w-[18px] flex-shrink-0">
+    <span className="relative w-[18px] h-[32px] flex-shrink-0">
       <Image
-        className="h-full w-full"
+        className="w-full h-full"
         src={ArrowForward}
         alt=">"
         layout="responsive"

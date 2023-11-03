@@ -10,10 +10,6 @@ import { scroller } from 'react-scroll';
 
 export { getStaticPaths, getStaticProps };
 
-const CartCounterButton = dynamic(
-  () => import('@/components/cart/cart-counter-button'),
-  { ssr: false }
-);
 const Layout = dynamic(() => import('@/components/layouts/preknow'));
 
 const Home: NextPageWithLayout<

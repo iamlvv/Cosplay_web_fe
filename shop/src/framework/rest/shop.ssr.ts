@@ -13,19 +13,19 @@ import { SettingsQueryOptions } from '@/types';
 type ParsedQueryParams = {
   slug: string;
 };
-export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async ({
-  locales,
-}) => {
-  invariant(locales, 'locales is not defined');
-  const { data } = await client.shops.all({ limit: 100, is_active: 1 });
-  const paths = data?.flatMap((shop) =>
-    locales?.map((locale) => ({ params: { slug: shop.slug }, locale }))
-  );
-  return {
-    paths,
-    fallback: 'blocking',
-  };
-};
+// export const getStaticPaths: GetStaticPaths<ParsedQueryParams> = async ({
+//   locales,
+// }) => {
+//   invariant(locales, 'locales is not defined');
+//   const { data } = await client.shops.all({ limit: 100, is_active: 1 });
+//   const paths = data?.flatMap((shop) =>
+//     locales?.map((locale) => ({ params: { slug: shop.slug }, locale }))
+//   );
+//   return {
+//     paths: ['/'],
+//     fallback: 'blocking',
+//   };
+// };
 type PageProps = {
   shop: Shop;
   variables: {
@@ -40,14 +40,17 @@ export const getStaticProps: GetStaticProps<
   const { slug } = params!; //* we know it's required because of getStaticPaths
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(
-    [API_ENDPOINTS.SETTINGS, { language: locale }],
-    ({ queryKey }) => client.settings.all(queryKey[1] as SettingsQueryOptions)
-  );
+  // await queryClient.prefetchQuery(
+  //   [API_ENDPOINTS.SETTINGS, { language: locale }],
+  //   ({ queryKey }) => client.settings.all(queryKey[1] as SettingsQueryOptions)
+  // );
   try {
     const shop = await client.shops.get(slug);
     await queryClient.prefetchInfiniteQuery(
-      [API_ENDPOINTS.PRODUCTS, { limit: PRODUCTS_PER_PAGE, shop_id: shop.id, language: locale }],
+      [
+        API_ENDPOINTS.PRODUCTS,
+        { limit: PRODUCTS_PER_PAGE, shop_id: shop.id, language: locale },
+      ],
       ({ queryKey }) => client.products.all(queryKey[1] as ProductQueryOptions)
     );
     return {

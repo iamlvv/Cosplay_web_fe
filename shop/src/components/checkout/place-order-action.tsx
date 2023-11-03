@@ -7,13 +7,7 @@ import ValidationError from '@/components/ui/validation-error';
 import Button from '@/components/ui/button';
 import { formatOrderedProduct } from '@/lib/format-ordered-product';
 import { useCart } from '@/store/quick-cart/cart.context';
-import {
-  billingAddressAtom,
-  checkoutAtom,
-  customerContactAtom,
-  discountAtom,
-  walletAtom,
-} from '@/store/checkout';
+import { checkoutAtom, discountAtom, walletAtom } from '@/store/checkout';
 import {
   calculatePaidTotal,
   calculateTotal,
@@ -25,15 +19,14 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
   const { t } = useTranslation('common');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const { createOrder, isLoading } = useCreateOrder();
-  const { locale }: any = useRouter();
+  const { locale } : any = useRouter();
   const { items } = useCart();
+
   const { orderStatuses } = useOrderStatuses({
     limit: 1,
-    language: locale,
+    language: locale
   });
 
-  const [billingAddress] = useAtom(billingAddressAtom);
-  const [customerContact] = useAtom(customerContactAtom);
   const [
     {
       billing_address,
@@ -46,7 +39,6 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
       token,
     },
   ] = useAtom(checkoutAtom);
-  console.log(billingAddress, customerContact);
   const [discount] = useAtom(discountAtom);
   const [use_wallet_points] = useAtom(walletAtom);
 
@@ -128,14 +120,6 @@ export const PlaceOrderAction: React.FC<{ className?: string }> = (props) => {
       ];
   const isAllRequiredFieldSelected = formatRequiredFields.every(
     (item) => !isEmpty(item)
-  );
-  console.log(
-    customer_contact,
-    payment_gateway,
-    billing_address,
-    shipping_address,
-    delivery_time,
-    available_items
   );
   return (
     <>

@@ -6,23 +6,22 @@ import PhoneInput from '@/components/ui/forms/phone-input';
 
 interface Props {
   userId: string;
-  profileId: string;
+  profileId?: string;
   contact: string;
 }
 
-const ProfileContact = ({ userId, profileId, contact }: Props) => {
+const ProfileContact = ({ userId, contact }: Props) => {
   const { openModal } = useModalAction();
   const { t } = useTranslation('common');
 
   function onAdd() {
     openModal('ADD_OR_UPDATE_PROFILE_CONTACT', {
       customerId: userId,
-      profileId,
       contact,
     });
   }
   return (
-    <Card className="flex w-full flex-col">
+    <Card className="flex w-full flex-col mb-8">
       <div className="mb-5 flex items-center justify-between md:mb-8">
         <p className="text-lg capitalize text-heading lg:text-xl">
           {t('text-contact-number')}
@@ -41,7 +40,7 @@ const ProfileContact = ({ userId, profileId, contact }: Props) => {
 
       <div className="grid grid-cols-1">
         <PhoneInput
-          country="us"
+          country="vn"
           value={contact}
           disabled={true}
           inputClass="!p-0 ltr:!pr-4 rtl:!pl-4 ltr:!pl-14 rtl:!pr-14 !flex !items-center !w-full !appearance-none !transition !duration-300 !ease-in-out !text-heading !text-sm focus:!outline-none focus:!ring-0 !border !border-border-base !rounded focus:!border-accent !h-12"

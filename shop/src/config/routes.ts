@@ -8,7 +8,8 @@ export const Routes = {
   orders: '/orders',
   order: (tracking_number: string) =>
     `/orders/${encodeURIComponent(tracking_number)}`,
-  refunds: '/refunds',
+  refunds: '/return-policy',
+  shipping: '/shipping-method',
   help: '/help',
   logout: '/logout',
   coupons: '/offers',
@@ -16,7 +17,7 @@ export const Routes = {
   products: '/products',
   product: (slug: string) => {
     // if (asPath) {
-    //   return `/products/${encodeURIComponent(slug)}?type=${asPath}`;  
+    //   return `/products/${encodeURIComponent(slug)}?type=${asPath}`;
     // }
     return `/products/${encodeURIComponent(slug)}`;
   },

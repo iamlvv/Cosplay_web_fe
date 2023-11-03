@@ -8,7 +8,7 @@ import * as yup from 'yup';
 import { useModalState } from '@/components/ui/modal/modal.context';
 import { Form } from '@/components/ui/forms/form';
 import { AddressType } from '@/framework/utils/constants';
-import { useUpdateUser } from '@/framework/user';
+import { useUpdateUser } from '@/hooks/user';
 
 type FormValues = {
   title: string;
@@ -49,7 +49,7 @@ export const AddressForm: React.FC<any> = ({
       onSubmit={onSubmit}
       className="grid h-full grid-cols-2 gap-5"
       //@ts-ignore
-      validationSchema={addressSchema}
+      // validationSchema={addressSchema}
       useFormProps={{
         shouldUnregister: true,
         defaultValues,
@@ -58,7 +58,7 @@ export const AddressForm: React.FC<any> = ({
     >
       {({ register, formState: { errors } }) => (
         <>
-          <div>
+          {/* <div>
             <Label>{t('text-type')}</Label>
             <div className="flex items-center space-x-4 rtl:space-x-reverse">
               <Radio
@@ -76,17 +76,17 @@ export const AddressForm: React.FC<any> = ({
                 label={t('text-shipping')}
               />
             </div>
-          </div>
+          </div> */}
 
           <Input
-            label={t('text-title')}
+            // label={t('text-title')}
             {...register('title')}
             error={t(errors.title?.message!)}
             variant="outline"
             className="col-span-2"
           />
 
-          <Input
+          {/* <Input
             label={t('text-country')}
             {...register('address.country')}
             error={t(errors.address?.country?.message!)}
@@ -120,7 +120,7 @@ export const AddressForm: React.FC<any> = ({
             error={t(errors.address?.street_address?.message!)}
             variant="outline"
             className="col-span-2"
-          />
+          /> */}
 
           <Button
             className="col-span-2 w-full"
@@ -154,12 +154,12 @@ export default function CreateOrUpdateAddressForm() {
       },
     };
     updateProfile({
-      id: customerId,
-      address: [formattedInput],
+      _id: customerId,
+      address: formattedInput.title,
     });
   }
   return (
-    <div className="min-h-screen bg-light p-5 sm:p-8 md:min-h-0 md:rounded-xl">
+    <div className="min-h-screen w-96 bg-light p-5 sm:p-8 md:min-h-0 md:rounded-xl">
       <h1 className="mb-4 text-center text-lg font-semibold text-heading sm:mb-6">
         {address ? t('text-update') : t('text-add-new')} {t('text-address')}
       </h1>

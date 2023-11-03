@@ -11,8 +11,6 @@ import { useTranslation } from 'next-i18next';
 import dynamic from 'next/dynamic';
 import { useEffect, useMemo } from 'react';
 import StaticMenu from './menu/static-menu';
-import PreknowLogo from '../icons/preknow-logo';
-import Link from '../ui/link';
 
 const Search = dynamic(() => import('@/components/ui/search/search'));
 const AuthorizedMenu = dynamic(() => import('./menu/authorized-menu'), {
@@ -53,9 +51,7 @@ const Header = ({ layout }: { layout?: string }) => {
         )}
       >
         <div className="flex w-full items-center lg:w-auto">
-          <Link href="/">
-            <PreknowLogo className="mx-auto lg:mx-0" />
-          </Link>
+          <Logo className="mx-auto lg:mx-0" />
           {/* <div className="hidden ltr:ml-10 ltr:mr-auto rtl:mr-10 rtl:ml-auto xl:block">
             <GroupsDropdownMenu />
           </div> */}
@@ -82,14 +78,14 @@ const Header = ({ layout }: { layout?: string }) => {
         <ul className="hidden shrink-0 items-center space-x-7 rtl:space-x-reverse lg:flex 2xl:space-x-10">
           <StaticMenu />
           <div className="flex items-center space-x-4 rtl:space-x-reverse">
-            {/* <a
+            <a
               href={`${process.env.NEXT_PUBLIC_ADMIN_URL}/register`}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex h-9 shrink-0 items-center justify-center rounded border border-accent px-3 py-0 text-sm font-semibold leading-none text-accent outline-none transition duration-300 ease-in-out hover:bg-accent hover:text-light focus:shadow focus:outline-none focus:ring-1 focus:ring-accent-700"
+              className="inline-flex h-9 shrink-0 items-center justify-center rounded border border-accent hover:bg-accent px-3 py-0 text-sm font-semibold text-accent leading-none hover:text-light outline-none transition duration-300 ease-in-out focus:shadow focus:outline-none focus:ring-1 focus:ring-accent-700"
             >
               {t('text-become-seller')}
-            </a> */}
+            </a>
             <li>{isAuthorize ? <AuthorizedMenu /> : <JoinButton />}</li>
           </div>
         </ul>

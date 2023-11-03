@@ -1,10 +1,11 @@
-import type { CreateContactUsInput } from '@/types';
 import Button from '@/components/ui/button';
 import { Form } from '@/components/ui/forms/form';
 import Input from '@/components/ui/forms/input';
 import TextArea from '@/components/ui/forms/text-area';
 import { useContact } from '@/framework/user';
+import type { CreateContactUsInput } from '@/types';
 import { useTranslation } from 'next-i18next';
+import { toast } from 'react-toastify';
 import * as yup from 'yup';
 
 const contactFormSchema = yup.object().shape({
@@ -21,7 +22,9 @@ const ContactForm = () => {
   const { mutate, isLoading } = useContact();
 
   function onSubmit(values: CreateContactUsInput) {
-    mutate(values);
+    // mutate(values);
+    console.log('values: ', values);
+    toast.success('Gửi yêu cầu thành công');
   }
 
   return (

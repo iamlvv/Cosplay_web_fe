@@ -26,13 +26,13 @@ export const siteSettings = {
   },
   authorizedLinks: [
     { href: Routes.profile, label: 'auth-menu-profile' },
-    { href: Routes.orders, label: 'auth-menu-my-orders' },
+    // { href: Routes.orders, label: 'auth-menu-my-orders' },
     // { href: Routes.wishlists, label: 'profile-sidebar-my-wishlist' },
     { href: Routes.checkout, label: 'auth-menu-checkout' },
   ],
   authorizedLinksMobile: [
     { href: Routes.profile, label: 'auth-menu-profile' },
-    { href: Routes.orders, label: 'auth-menu-my-orders' },
+    // { href: Routes.orders, label: 'auth-menu-my-orders' },
     // { href: Routes.wishlists, label: 'profile-sidebar-my-wishlist' },
     // { href: Routes.refunds, label: 'text-my-refunds' },
     { href: Routes.checkout, label: 'auth-menu-checkout' },
@@ -41,39 +41,39 @@ export const siteSettings = {
   dashboardSidebarMenu: [
     {
       href: Routes.profile,
-      label: 'profile-sidebar-profile',
+      label: 'Profile',
     },
     {
       href: Routes.changePassword,
-      label: 'profile-sidebar-password',
+      label: 'Thay đổi mật khẩu',
     },
-    {
-      href: Routes.orders,
-      label: 'profile-sidebar-orders',
-    },
-    {
-      href: Routes.downloads,
-      label: 'profile-sidebar-downloads',
-    },
-    {
-      href: Routes.wishlists,
-      label: 'profile-sidebar-my-wishlist',
-    },
-    {
-      href: Routes.questions,
-      label: 'profile-sidebar-my-questions',
-    },
-    {
-      href: Routes.refunds,
-      label: 'text-my-refunds',
-    },
-    {
-      href: Routes.reports,
-      label: 'profile-sidebar-my-reports',
-    },
+    // {
+    //   href: Routes.orders,
+    //   label: 'profile-sidebar-orders',
+    // },
+    // {
+    //   href: Routes.downloads,
+    //   label: 'profile-sidebar-downloads',
+    // },
+    // {
+    //   href: Routes.wishlists,
+    //   label: 'profile-sidebar-my-wishlist',
+    // },
+    // {
+    //   href: Routes.questions,
+    //   label: 'profile-sidebar-my-questions',
+    // },
+    // {
+    //   href: Routes.refunds,
+    //   label: 'text-my-refunds',
+    // },
+    // {
+    //   href: Routes.reports,
+    //   label: 'profile-sidebar-my-reports',
+    // },
     {
       href: Routes.help,
-      label: 'profile-sidebar-help',
+      label: 'Trợ giúp',
     },
     {
       href: Routes.logout,
@@ -96,281 +96,96 @@ export const siteSettings = {
       name: 'RedQ, Inc',
       href: 'https://redq.io/',
     },
-    address: '2429 River Drive, Suite 35 Cottonhall, CA 2296 United Kingdom',
-    email: 'dummy@dummy.com',
-    phone: '+1 256-698-0694',
+    address: 'KTX Khu A - ĐHQG HCM',
+    email: 'contact.preknow@gmail.com',
+    phone: '(917) 112-245',
     menus: [
       {
-        title: 'text-explore',
+        title: 'Tài khoản của tôi',
         links: [
           {
-            name: 'text-about-us',
+            name: 'Đăng nhập / Đăng ký',
             href: '/',
           },
           {
-            name: 'text-sitemap',
-            href: '/',
+            name: 'Thay đổi địa chỉ',
+            href: Routes.profile,
           },
           {
-            name: 'text-bookmarks',
-            href: '/',
+            name: 'Chi tiết tài khoản',
+            href: Routes.profile,
           },
           {
-            name: 'text-sign-join',
+            name: 'Lịch sử mua hàng',
             href: '/',
           },
         ],
       },
       {
-        title: 'text-customer-service',
+        title: 'Kênh người bán',
         links: [
           {
-            name: 'text-faq-help',
-            href: Routes.help,
-          },
-          {
-            name: 'text-returns',
+            name: 'Trở thành người bán',
             href: '/',
           },
           {
-            name: 'text-accessibility',
-            href: '/',
-          },
-          {
-            name: 'text-contact-us',
-            href: Routes.contactUs,
-          },
-          {
-            name: 'text-store-pickup',
+            name: 'Quy định đăng bán',
             href: '/',
           },
         ],
       },
       {
-        title: 'text-our-information',
+        title: 'Về PreKnow',
         links: [
           {
-            name: 'text-privacy-update',
+            name: 'Giới thiệu về PreKnow',
+            href: '/',
+          },
+          {
+            name: 'Chính sách bảo mật',
             href: Routes.privacy,
           },
           {
-            name: 'text-terms-condition',
+            name: 'Điều khoản sử dụng',
             href: Routes.terms,
           },
-          {
-            name: 'text-return-policy',
-            href: '/',
-          },
-          {
-            name: 'text-sitemap',
-            href: '/',
-          },
-        ],
-      },
-    ],
-    payment_methods: [
-      {
-        img: '/payment/master.png',
-        url: '/',
-      },
-      {
-        img: '/payment/skrill.png',
-        url: '/',
-      },
-      {
-        img: '/payment/paypal.png',
-        url: '/',
-      },
-      {
-        img: '/payment/visa.png',
-        url: '/',
-      },
-      {
-        img: '/payment/discover.png',
-        url: '/',
-      },
-    ],
-  },
-};
-
-export const PreknowSiteSettings = {
-  name: 'PreKnow',
-  description: '',
-  logo: {
-    url: '/logo.svg',
-    alt: 'PreKnow',
-    href: '/grocery',
-    width: 128,
-    height: 40,
-  },
-  defaultLanguage: 'en',
-  currencyCode: 'USD',
-  product: {
-    placeholderImage: '/product-placeholder.svg',
-    cardMaps: {
-      grocery: 'Krypton',
-      furniture: 'Radon',
-      bag: 'Oganesson',
-      makeup: 'Neon',
-      book: 'Xenon',
-      medicine: 'Helium',
-      default: 'Argon',
-    },
-  },
-  authorizedLinks: [
-    { href: Routes.profile, label: 'auth-menu-profile' },
-    { href: Routes.orders, label: 'auth-menu-my-orders' },
-    { href: Routes.wishlists, label: 'profile-sidebar-my-wishlist' },
-    { href: Routes.checkout, label: 'auth-menu-checkout' },
-  ],
-  authorizedLinksMobile: [
-    { href: Routes.profile, label: 'auth-menu-profile' },
-    { href: Routes.orders, label: 'auth-menu-my-orders' },
-    { href: Routes.wishlists, label: 'profile-sidebar-my-wishlist' },
-    { href: Routes.refunds, label: 'text-my-refunds' },
-    { href: Routes.checkout, label: 'auth-menu-checkout' },
-    { href: Routes.changePassword, label: 'profile-sidebar-password' },
-  ],
-  dashboardSidebarMenu: [
-    {
-      href: Routes.profile,
-      label: 'profile-sidebar-profile',
-    },
-    {
-      href: Routes.changePassword,
-      label: 'profile-sidebar-password',
-    },
-    {
-      href: Routes.orders,
-      label: 'profile-sidebar-orders',
-    },
-    {
-      href: Routes.downloads,
-      label: 'profile-sidebar-downloads',
-    },
-    {
-      href: Routes.wishlists,
-      label: 'profile-sidebar-my-wishlist',
-    },
-    {
-      href: Routes.questions,
-      label: 'profile-sidebar-my-questions',
-    },
-    {
-      href: Routes.refunds,
-      label: 'text-my-refunds',
-    },
-    {
-      href: Routes.reports,
-      label: 'profile-sidebar-my-reports',
-    },
-    {
-      href: Routes.help,
-      label: 'profile-sidebar-help',
-    },
-    {
-      href: Routes.logout,
-      label: 'profile-sidebar-logout',
-    },
-  ],
-  sellingAdvertisement: {
-    image: {
-      src: '/selling.png',
-      alt: 'Selling Advertisement',
-    },
-  },
-  cta: {
-    mockup_img_src: '/mockup-img.png',
-    play_store_link: '/',
-    app_store_link: '/',
-  },
-  footer: {
-    copyright: {
-      name: 'RedQ, Inc',
-      href: 'https://redq.io/',
-    },
-    address: '2429 River Drive, Suite 35 Cottonhall, CA 2296 United Kingdom',
-    email: 'dummy@dummy.com',
-    phone: '+1 256-698-0694',
-    menus: [
-      {
-        title: 'Shop with us',
-        links: [
-          {
-            name: 'Advance Search',
-            href: '/',
-          },
-          {
-            name: 'My account',
-            href: '/',
-          },
-          {
-            name: 'My order',
-            href: '/',
-          },
-          {
-            name: 'View basket',
-            href: '/',
-          },
         ],
       },
       {
-        title: 'Sell with us',
+        title: 'Hỗ trợ',
         links: [
           {
-            name: 'Start Selling',
-            href: '/',
-          },
-          {
-            name: 'Refer a seller',
-            href: '/',
-          },
-        ],
-      },
-      {
-        title: 'About us',
-        links: [
-          {
-            name: 'About PreKnow',
-            href: '/',
-          },
-          {
-            name: 'Privacy policy',
-            href: Routes.privacy,
-          },
-          {
-            name: 'Terms & Conditions',
-            href: Routes.privacy,
-          },
-        ],
-      },
-      {
-        title: 'Find help',
-        links: [
-          {
-            name: 'Help',
+            name: 'Các câu hỏi thường gặp',
             href: Routes.help,
           },
           {
-            name: 'Customer Support',
+            name: 'Liên hệ hỗ trợ',
             href: Routes.help,
+          },
+          {
+            name: 'Chính sách đổi trả',
+            href: Routes.refunds,
+          },
+          {
+            name: 'Phương thức vận chuyển',
+            href: Routes.shipping,
           },
         ],
       },
       {
-        title: 'Follow us',
+        title: 'Theo dõi',
         links: [
           {
             name: 'Facebook',
-            href: '/',
+            href: 'https://www.facebook.com',
           },
           {
             name: 'Instagram',
-            href: '/',
+            href: 'https://www.instagram.com',
           },
           {
             name: 'YouTube',
-            href: '/',
+            href: 'https://www.instagram.com',
           },
         ],
       },

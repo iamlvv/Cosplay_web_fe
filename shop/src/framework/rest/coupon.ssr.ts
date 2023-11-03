@@ -1,4 +1,4 @@
-import type { SettingsQueryOptions, TypeQueryOptions } from '@/types';
+import type { TypeQueryOptions } from '@/types';
 import type { GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { QueryClient } from 'react-query';
@@ -9,10 +9,10 @@ import { TYPES_PER_PAGE } from './client/variables';
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   const queryClient = new QueryClient();
-  await queryClient.prefetchQuery(
-    [API_ENDPOINTS.SETTINGS, { language: locale }],
-    ({ queryKey }) => client.settings.all(queryKey[1] as SettingsQueryOptions)
-  );
+  // await queryClient.prefetchQuery(
+  //   [API_ENDPOINTS.SETTINGS, { language: locale }],
+  //   ({ queryKey }) => client.settings.all(queryKey[1] as SettingsQueryOptions)
+  // );
   await queryClient.prefetchQuery(
     [API_ENDPOINTS.TYPES, { limit: TYPES_PER_PAGE, language: locale }],
     ({ queryKey }) => client.types.all(queryKey[1] as TypeQueryOptions)

@@ -3,6 +3,7 @@ import Header from './header';
 import HeaderMinimal from './header-minimal';
 import MobileNavigation from './mobile-navigation';
 import Footer from './footer';
+import HomeLayout from './_home';
 
 export default function SiteLayout({ children }: React.PropsWithChildren<{}>) {
   const { layout } = useLayout();
@@ -20,5 +21,5 @@ export default function SiteLayout({ children }: React.PropsWithChildren<{}>) {
   );
 }
 export const getLayout = (page: React.ReactElement) => (
-  <SiteLayout>{page}</SiteLayout>
+  <HomeLayout layout={page.props.layout}>{page}</HomeLayout>
 );

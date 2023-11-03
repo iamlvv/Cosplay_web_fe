@@ -1,12 +1,12 @@
 import CheckboxGroup from './checkbox-group';
 import { useState, useEffect, useMemo } from 'react';
 import Checkbox from '@/components/ui/forms/checkbox/checkbox';
+import { useRouter } from 'next/router';
 import Scrollbar from '@/components/ui/scrollbar';
 import { useTranslation } from 'react-i18next';
 import ErrorMessage from '@/components/ui/error-message';
 import Spinner from '@/components/ui/loaders/spinner/spinner';
 import { useCategories, useSubCategories } from '@/hooks/category';
-import { useRouter } from 'next/router';
 
 interface Props {
   categories: any[];
@@ -18,9 +18,7 @@ const CategoryFilterView = ({ categories, type }: Props) => {
 
   const router = useRouter();
   const { query } = router;
-  console.log('query', router.isReady, router.query);
-  // selectedValues take the param 'subcategory' from the url and the param 'types' from the url
-  // selectedValues take the param 'types' from the url
+
   const selectedValues = useMemo(() => {
     if (query.subcategory && type === 'Subcategories') {
       return query.subcategory.toString().split(',');
@@ -31,18 +29,19 @@ const CategoryFilterView = ({ categories, type }: Props) => {
     return [];
   }, [query]);
 
-  const [state, setState] = useState(selectedValues);
-
+  const [state, setState] = useState<string[]>(() => selectedValues);
   useEffect(() => {
     setState(selectedValues);
   }, [selectedValues]);
 
   function handleChange(values: string[]) {
-    console.log('values', values);
-    // If users uncheck all the checkboxes, we need to remove the param 'subcategory' from the url
-    // If users check subcategories, we need to add the param 'subcategory' to the url
-    // If users check clothing types, we need to add the param 'types' to the url
-    // If users uncheck all the checkboxes, we need to remove the param 'types' from the url
+    // router.push({
+    //   pathname: router.pathname,
+    //   query: {
+    //     ...router.query,
+    //     category: values.join(','),
+    //   },
+    // });
     if (values.length === 0) {
       if (type === 'Subcategories') {
         router.push({
@@ -83,7 +82,7 @@ const CategoryFilterView = ({ categories, type }: Props) => {
       }
     }
   }
-  console.log(categories);
+
   return (
     <div className="relative -mb-5 after:absolute after:bottom-0 after:flex after:h-6 after:w-full after:bg-gradient-to-t after:from-white ltr:after:left-0 rtl:after:right-0">
       <Scrollbar style={{ maxHeight: '400px' }} className="pb-6">
@@ -107,11 +106,14 @@ const CategoryFilterView = ({ categories, type }: Props) => {
 };
 
 const CategoryFilter: React.FC<{ type?: any }> = ({ type }) => {
+  // const { categories, isLoading, error } = useCategories({
+  //   limit: 1000,
+  // });
   const [categories, setCategories] = useState([]);
+
   const router = useRouter();
   const { query } = router;
 
-  const [category, setCategory] = useState('');
   const { isLoading, error } = useSubCategories({
     limit: 1000,
     query: query.category as string,
@@ -158,7 +160,7 @@ const CategoryFilter: React.FC<{ type?: any }> = ({ type }) => {
       getClothingType();
     }
   }, [query]);
-  console.log(category);
+
   if (error) return <ErrorMessage message={error.message} />;
   if (isLoading)
     return (

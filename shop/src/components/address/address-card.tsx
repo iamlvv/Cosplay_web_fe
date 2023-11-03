@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { useTranslation } from 'next-i18next';
 
 interface AddressProps {
-  address: any;
+  address: string;
   checked: boolean;
   onEdit?: () => void;
   onDelete?: () => void;
@@ -14,7 +14,6 @@ interface AddressProps {
 const AddressCard: React.FC<AddressProps> = ({
   checked,
   address,
-  userId,
   onEdit,
   onDelete,
 }) => {
@@ -30,11 +29,9 @@ const AddressCard: React.FC<AddressProps> = ({
       )}
     >
       <p className="mb-3 text-sm font-semibold capitalize text-heading">
-        {address?.title}
+        {address}
       </p>
-      <p className="text-sm text-sub-heading">
-        {formatAddress(address?.address)}
-      </p>
+      {/* <p className="text-sm text-sub-heading">{address}</p> */}
       <div className="absolute top-4 flex space-x-2 opacity-0 group-hover:opacity-100 ltr:right-4 rtl:left-4 rtl:space-x-reverse">
         {onEdit && (
           <button

@@ -1,5 +1,24 @@
+import {
+  initialState,
+  updateFormState,
+} from '@/components/auth/forgot-password';
+import { initialOtpState, optAtom } from '@/components/otp/atom';
 import { useModalAction } from '@/components/ui/modal/modal.context';
+import { API_ENDPOINTS } from '@/framework/client/api-endpoints';
+import client from '@/framework/client/preknow';
+import { useToken } from '@/lib/hooks/use-token';
+import { authorizationAtom } from '@/store/authorization-atom';
+import { clearCheckoutAtom } from '@/store/checkout';
+import type {
+  ChangePasswordUserInput,
+  OtpLoginInputType,
+  RegisterUserInput,
+} from '@/types';
+import { useAtom } from 'jotai';
+import { useStateMachine } from 'little-state-machine';
+import { signOut as socialLoginSignOut } from 'next-auth/react';
 import { useTranslation } from 'next-i18next';
+import { useState } from 'react';
 import {
   QueryClient,
   useMutation,
@@ -7,32 +26,12 @@ import {
   useQueryClient,
 } from 'react-query';
 import { toast } from 'react-toastify';
-import client from './client';
-import preknowClient from './client/preknow';
-import { authorizationAtom } from '@/store/authorization-atom';
-import { useAtom } from 'jotai';
-import { signOut as socialLoginSignOut } from 'next-auth/react';
-import { useToken } from '@/lib/hooks/use-token';
-import { API_ENDPOINTS } from './client/api-endpoints';
-import { useState } from 'react';
-import type {
-  RegisterUserInput,
-  ChangePasswordUserInput,
-  OtpLoginInputType,
-} from '@/types';
-import { initialOtpState, optAtom } from '@/components/otp/atom';
-import { useStateMachine } from 'little-state-machine';
-import {
-  initialState,
-  updateFormState,
-} from '@/components/auth/forgot-password';
-import { clearCheckoutAtom } from '@/store/checkout';
 
 export function useUser() {
   const [isAuthorized] = useAtom(authorizationAtom);
   const { data, isLoading, error } = useQuery(
     [API_ENDPOINTS.USERS_ME],
-    preknowClient.users.me,
+    client.users.me,
     {
       enabled: isAuthorized,
       onError: (err) => {
@@ -74,7 +73,7 @@ export const useUpdateUser = () => {
   const { closeModal } = useModalAction();
   return useMutation(client.users.update, {
     onSuccess: (data) => {
-      if (data?.id) {
+      if (data?._id) {
         toast.success(t('profile-update-successful'));
         closeModal();
       }
@@ -112,7 +111,7 @@ export function useLogin() {
   const { setToken } = useToken();
   let [serverError, setServerError] = useState<string | null>(null);
 
-  const { mutate, isLoading } = useMutation(preknowClient.users.login, {
+  const { mutate, isLoading } = useMutation(client.users.login, {
     onSuccess: (data) => {
       if (!data.access_token) {
         setServerError('error-credential-wrong');
@@ -136,7 +135,7 @@ export function useSocialLogin() {
   const { setToken } = useToken();
   const [_, setAuthorized] = useAtom(authorizationAtom);
 
-  return useMutation(preknowClient.users.socialLogin, {
+  return useMutation(client.users.socialLogin, {
     onSuccess: (data) => {
       if (data?.access_token) {
         setToken(data?.access_token);
@@ -226,11 +225,11 @@ export function useOtpLogin() {
 
   const { mutate: otpLogin, isLoading } = useMutation(client.users.OtpLogin, {
     onSuccess: (data) => {
-      if (!data.token) {
+      if (!data.access_token) {
         setServerError('text-otp-verify-failed');
         return;
       }
-      setToken(data.token!);
+      setToken(data.access_token!);
       setAuthorized(true);
       setOtpState({
         ...initialOtpState,
@@ -267,13 +266,13 @@ export function useRegister() {
 
   const { mutate, isLoading } = useMutation(client.users.register, {
     onSuccess: (data) => {
-      if (data?.token && data?.permissions?.length) {
-        setToken(data?.token);
+      if (data?.access_token) {
+        setToken(data?.access_token);
         setAuthorized(true);
         closeModal();
         return;
       }
-      if (!data.token) {
+      if (!data.access_token) {
         toast.error(t('error-credential-wrong'));
       }
     },

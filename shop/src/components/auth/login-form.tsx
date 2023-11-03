@@ -15,7 +15,6 @@ import { useRouter } from 'next/router';
 import * as yup from 'yup';
 import { GoogleIcon } from '../icons/google-icon';
 import PreknowLogo from '../icons/preknow-logo';
-// import { MobileIcon } from '../icons/mobile-icon';
 
 const loginFormSchema = yup.object().shape({
   email: yup
@@ -31,9 +30,7 @@ function LoginForm() {
   const isCheckout = router.pathname.includes('checkout');
   const { mutate: login, isLoading, serverError, setServerError } = useLogin();
 
-  function onSubmit({ email, password }: LoginUserInput, e: any) {
-    e.preventDefault();
-    console.log(email, password);
+  function onSubmit({ email, password }: LoginUserInput) {
     login({
       email,
       password,

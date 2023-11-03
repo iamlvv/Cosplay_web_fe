@@ -1,29 +1,28 @@
+import { orderIdAtom } from './../store/checkout';
+import { useModalAction } from '@/components/ui/modal/modal.context';
+import { API_ENDPOINTS } from '@/framework/client/api-endpoints';
+import client from '@/framework/client/preknow';
+import { mapPaginatorData } from '@/framework/utils/data-mappers';
+import { verifiedResponseAtom } from '@/store/checkout';
 import {
+  CreateRefundInput,
   DownloadableFilePaginator,
-  Order,
   OrderPaginator,
   OrderQueryOptions,
   OrderStatusPaginator,
   QueryOptions,
-  CreateOrderInput,
-  CreateRefundInput,
 } from '@/types';
+import { Order } from '@/types/preknow';
+import { useAtom } from 'jotai';
+import { useRouter } from 'next/router';
+import { useTranslation } from 'react-i18next';
 import {
   useInfiniteQuery,
   useMutation,
   useQuery,
   useQueryClient,
 } from 'react-query';
-import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import { useModalAction } from '@/components/ui/modal/modal.context';
-import { API_ENDPOINTS } from './client/api-endpoints';
-import client from './client';
-import { useAtom } from 'jotai';
-import { verifiedResponseAtom } from '@/store/checkout';
-import { useRouter } from 'next/router';
-import { Routes } from '@/config/routes';
-import { mapPaginatorData } from '@/framework/utils/data-mappers';
 
 export function useOrders(options?: Partial<OrderQueryOptions>) {
   const { locale } = useRouter();
@@ -69,10 +68,10 @@ export function useOrders(options?: Partial<OrderQueryOptions>) {
   };
 }
 
-export function useOrder({ tracking_number }: { tracking_number: string }) {
+export function useOrder({ orderId }: { orderId: string }) {
   const { data, isLoading, error } = useQuery<Order, Error>(
-    [API_ENDPOINTS.ORDERS, tracking_number],
-    () => client.orders.get(tracking_number)
+    [API_ENDPOINTS.ORDERS, orderId],
+    () => client.orders.get(orderId)
   );
 
   return {
@@ -253,12 +252,16 @@ export function useCreateRefund() {
 
 export function useCreateOrder() {
   const router = useRouter();
-  const { locale } = router;
+  const [_, setOrderId] = useAtom(orderIdAtom);
 
   const { mutate: createOrder, isLoading } = useMutation(client.orders.create, {
     onSuccess: (data) => {
-      if (data?.tracking_number) {
-        router.push(Routes.order(data?.tracking_number));
+      if (data?.order_url) {
+        setOrderId(data.data._id);
+        router.push(data.order_url);
+      } else {
+        setOrderId(data.data._id);
+        router.push('/checkout/finish');
       }
     },
     onError: (error) => {
@@ -269,16 +272,8 @@ export function useCreateOrder() {
     },
   });
 
-  function formatOrderInput(input: CreateOrderInput) {
-    const formattedInputs = {
-      ...input,
-      language: locale,
-    };
-    createOrder(formattedInputs);
-  }
-
   return {
-    createOrder: formatOrderInput,
+    createOrder,
     isLoading,
   };
 }
