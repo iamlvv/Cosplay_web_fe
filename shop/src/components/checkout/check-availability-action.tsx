@@ -14,8 +14,9 @@ export const CheckAvailabilityAction: React.FC<{ className?: string }> = (
   const [shipping_address] = useAtom(shippingAddressAtom);
   const { items, total, isEmpty } = useCart();
 
-  const { mutate: verifyCheckout, isLoading: loading } : any = useVerifyOrder();
-
+  const { mutate: verifyCheckout, isLoading: loading }: any = useVerifyOrder();
+  console.log('billing_address', billing_address);
+  console.log('shipping_address', shipping_address);
   function handleVerifyCheckout() {
     verifyCheckout({
       amount: total,

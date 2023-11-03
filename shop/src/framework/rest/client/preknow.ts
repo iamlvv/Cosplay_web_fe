@@ -77,9 +77,12 @@ import { AuthResponse, SocialLoginInputType, User } from '@/types/preknow';
 class PreknowClient {
   products = {
     all: ({ ...params }: Partial<ProductQueryOptions>) =>
-      HttpClient.get<ProductPaginator>('http://localhost:5001/store/products', {
-        ...params,
-      }),
+      HttpClient.get<ProductPaginator>(
+        'http://localhost:5001/store/products/?text=',
+        {
+          ...params,
+        }
+      ),
     popular: (params: Partial<PopularProductQueryOptions>) =>
       HttpClient.get<Product[]>(
         `http://localhost:5001/store/products/popular-products`,
@@ -151,6 +154,13 @@ class PreknowClient {
       HttpClient.get<CategoryPaginator>('http://localhost:5001/categories', {
         ...params,
       }),
+    subcategories: ({ ...params }: Partial<CategoryQueryOptions>, query: any) =>
+      HttpClient.get<CategoryPaginator>(
+        'http://localhost:5001/store/products/subcategoryof?category=',
+        {
+          ...query,
+        }
+      ),
   };
   tags = {
     all: (params: Partial<TagQueryOptions>) =>

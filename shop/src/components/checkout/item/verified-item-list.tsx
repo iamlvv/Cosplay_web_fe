@@ -110,7 +110,11 @@ const VerifiedItemList: React.FC<Props> = ({ className }) => {
             </p>
             <span className="flex items-center text-xs font-semibold text-red-500 ltr:mr-auto rtl:ml-auto">
               ({coupon?.code})
-              <button onClick={() => setCoupon(null)}>
+              <button
+                onClick={() => setCoupon(null)}
+                type="button"
+                title="button"
+              >
                 <CloseIcon className="h-3 w-3 ltr:ml-2 rtl:mr-2" />
               </button>
             </span>

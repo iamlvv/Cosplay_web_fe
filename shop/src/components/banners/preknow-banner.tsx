@@ -10,29 +10,30 @@ import { ArrowNext } from '../icons';
 import Button from '../ui/button';
 import bannerImage from '@/assets/preknow/banner.png';
 
-const PreknowBanner: React.FC = () => {
+const PreknowBanner: React.FC = (props: any) => {
   const { showHeaderSearch, hideHeaderSearch } = useHeaderSearch();
   const intersectionRef = useRef(null);
   const router = useRouter();
 
-  const intersection = useIntersection(intersectionRef, {
-    root: null,
-    rootMargin: '0px',
-    threshold: 1,
-  });
-  useEffect(() => {
-    if (intersection && intersection.isIntersecting) {
-      hideHeaderSearch();
-      return;
-    }
-    if (intersection && !intersection.isIntersecting) {
-      showHeaderSearch();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [intersection]);
+  // const intersection = useIntersection(intersectionRef, {
+  //   root: null,
+  //   rootMargin: '0px',
+  //   threshold: 1,
+  // });
+  // useEffect(() => {
+  //   if (intersection && intersection.isIntersecting) {
+  //     hideHeaderSearch();
+  //     return;
+  //   }
+  //   if (intersection && !intersection.isIntersecting) {
+  //     showHeaderSearch();
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [intersection]);
 
   const handleClick = () => {
-    router.push('/');
+    // router.push('/search');
+    props.handleRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -72,9 +73,9 @@ const PreknowBanner: React.FC = () => {
                     cookbooks, children&apos;s books, affordable textbooks for
                     school, and out-of-print titles.
                   </p>
-                  <Button className="col-span-2" onClick={handleClick}>
+                  {/* <Button className="col-span-2" onClick={handleClick}>
                     <span className="mr-3">Explore</span> <ArrowNext />
-                  </Button>
+                  </Button> */}
                 </div>
               </div>
             </SwiperSlide>

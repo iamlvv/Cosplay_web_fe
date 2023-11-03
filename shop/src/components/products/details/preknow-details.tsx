@@ -82,11 +82,11 @@ const PreknowDetails: React.FC<Props> = ({ product }) => {
             <div className="flex w-full items-start justify-between space-x-5 lg:space-x-8">
               <div className="flex flex-col items-start gap-y-1">
                 {name && (
-                  <h1 className="text-2xl font-semibold tracking-tight text-heading lg:text-3xl xl:text-4xl">
+                  <h1 className="mb-5 text-2xl font-semibold tracking-tight text-heading lg:text-3xl xl:text-4xl">
                     {name}
                   </h1>
                 )}
-                {author && (
+                {/* {author && (
                   <div className="flex items-center space-x-5">
                     <p className="flex items-center text-sm font-normal text-slate-400">
                       Tác giả:
@@ -98,7 +98,7 @@ const PreknowDetails: React.FC<Props> = ({ product }) => {
                       </Link>
                     </p>
                   </div>
-                )}
+                )} */}
                 <PreknowRatingStar
                   rating={randomRating(numberOfReview)}
                   numberOfReview={numberOfReview}
@@ -107,7 +107,7 @@ const PreknowDetails: React.FC<Props> = ({ product }) => {
             </div>
 
             {/* Tag section */}
-            <div className="mt-4 flex">
+            {/* <div className="mt-4 flex">
               {category?.name && (
                 <Link
                   href={category?.slug || '/'}
@@ -137,7 +137,7 @@ const PreknowDetails: React.FC<Props> = ({ product }) => {
                   {attributes.conditions.name}
                 </Link>
               )}
-            </div>
+            </div> */}
 
             {/* Price section */}
             <span className="mt-5 mb-7 inline-block items-center space-x-4 rounded-lg px-5 py-3 shadow">
@@ -181,7 +181,7 @@ const PreknowDetails: React.FC<Props> = ({ product }) => {
         </div>
       </div>
 
-      <Element
+      {/* <Element
         name="details"
         className="mb-7 rounded-md bg-light px-5 pt-5 pb-14"
       >
@@ -268,7 +268,7 @@ const PreknowDetails: React.FC<Props> = ({ product }) => {
             </button>
           </div>
         </div>
-      </Element>
+      </Element> */}
 
       <Element
         name="descriptions"

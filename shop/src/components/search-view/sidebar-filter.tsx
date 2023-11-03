@@ -102,7 +102,11 @@ const SidebarFilter: React.FC<{
         )}
 
         <FieldWrapper title="Danh mục sản phẩm">
-          <CategoryFilter />
+          <CategoryFilter type={'Subcategories'} />
+        </FieldWrapper>
+
+        <FieldWrapper title="Loại trang phục">
+          <CategoryFilter type={'ClothingType'} />
         </FieldWrapper>
 
         <FieldWrapper title="Sắp xếp theo khoảng giá">

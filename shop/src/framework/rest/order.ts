@@ -6,7 +6,7 @@ import {
   OrderStatusPaginator,
   QueryOptions,
   CreateOrderInput,
-  CreateRefundInput
+  CreateRefundInput,
 } from '@/types';
 import {
   useInfiniteQuery,
@@ -27,7 +27,7 @@ import { mapPaginatorData } from '@/framework/utils/data-mappers';
 
 export function useOrders(options?: Partial<OrderQueryOptions>) {
   const { locale } = useRouter();
-  
+
   const formattedOptions = {
     ...options,
     // language: locale
@@ -82,9 +82,11 @@ export function useOrder({ tracking_number }: { tracking_number: string }) {
   };
 }
 
-export function useOrderStatuses(options: Pick<QueryOptions, 'limit' | 'language'>) {
+export function useOrderStatuses(
+  options: Pick<QueryOptions, 'limit' | 'language'>
+) {
   const { locale } = useRouter();
-  
+
   const formattedOptions = {
     ...options,
     // language: locale
@@ -125,9 +127,8 @@ export function useOrderStatuses(options: Pick<QueryOptions, 'limit' | 'language
 }
 
 export function useRefunds(options: Pick<QueryOptions, 'limit'>) {
-
   const { locale } = useRouter();
-  
+
   const formattedOptions = {
     ...options,
     // language: locale
@@ -170,9 +171,8 @@ export function useRefunds(options: Pick<QueryOptions, 'limit'>) {
 export const useDownloadableProducts = (
   options: Pick<QueryOptions, 'limit'>
 ) => {
-
   const { locale } = useRouter();
-  
+
   const formattedOptions = {
     ...options,
     // language: locale
@@ -272,7 +272,7 @@ export function useCreateOrder() {
   function formatOrderInput(input: CreateOrderInput) {
     const formattedInputs = {
       ...input,
-      language: locale
+      language: locale,
     };
     createOrder(formattedInputs);
   }
@@ -319,6 +319,7 @@ export function useVerifyOrder() {
       if (data) {
         //@ts-ignore
         setVerifiedResponse(data);
+        console.log(data);
       }
     },
     onError: (error) => {

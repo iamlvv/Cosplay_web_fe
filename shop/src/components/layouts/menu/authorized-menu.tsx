@@ -81,7 +81,10 @@ const AuthorizedMenu: React.FC<{ minimal?: boolean }> = ({ minimal }) => {
           <Menu.Item>
             <li>
               <button
-                onClick={() => logout()}
+                onClick={() => {
+                  logout();
+                  router.push('/');
+                }}
                 className={cn(
                   'block w-full py-2.5 px-6 text-sm font-semibold capitalize text-heading transition duration-200 hover:text-accent focus:outline-none ltr:text-left rtl:text-right'
                 )}

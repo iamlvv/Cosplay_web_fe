@@ -41,3 +41,36 @@ export function useCategories(options?: Partial<CategoryQueryOptions>) {
     hasMore: Boolean(hasNextPage),
   };
 }
+
+export function useSubCategories(options?: Partial<CategoryQueryOptions>) {
+  const {
+    data,
+    isLoading,
+    error,
+    fetchNextPage,
+    hasNextPage,
+    isFetching,
+    isFetchingNextPage,
+  } = useInfiniteQuery<CategoryPaginator, Error>(
+    [API_ENDPOINTS.CATEGORIES, { ...options }],
+    ({ pageParam }) => {
+      return client.categories.subcategories(pageParam, options?.query);
+    }
+  );
+  function handleLoadMore() {
+    fetchNextPage();
+  }
+
+  return {
+    categories: data?.pages?.flatMap((page) => page.data) ?? [],
+    paginatorInfo: Array.isArray(data?.pages)
+      ? mapPaginatorData(data?.pages[data.pages.length - 1])
+      : null,
+    isLoading,
+    error,
+    isFetching,
+    isLoadingMore: isFetchingNextPage,
+    loadMore: handleLoadMore,
+    hasMore: Boolean(hasNextPage),
+  };
+}

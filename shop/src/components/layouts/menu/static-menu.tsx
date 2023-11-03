@@ -19,7 +19,7 @@ const StaticMenu = () => {
             href={href}
             className="flex items-center font-normal text-heading no-underline transition duration-200 hover:text-accent focus:text-accent"
           >
-            {t(label)}
+            {label === 'nav-menu-faq' ? 'FAQ' : 'Liên hệ'}
           </Link>
         </li>
       ))}

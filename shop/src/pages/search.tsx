@@ -16,6 +16,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useRouter } from 'next/router';
 import StickyBox from 'react-sticky-box';
+import NavbarCategory from '@/components/layouts/costume-navbar-category';
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   return {
@@ -44,8 +45,10 @@ export default function SearchPage() {
   if (error) return <ErrorMessage message={error.message} />;
   return (
     <div className="w-full">
+      <NavbarCategory />
       <div className="mb-7 flex flex-col items-center justify-between md:flex-row">
         {/* //FIXME: */}
+
         <SearchCount
           from={0}
           to={paginatorInfo?.lastItem ?? 0}

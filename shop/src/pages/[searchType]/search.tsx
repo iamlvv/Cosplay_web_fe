@@ -14,6 +14,7 @@ import { useAtom } from 'jotai';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import StickyBox from 'react-sticky-box';
+import NavbarCategory from '@/components/layouts/costume-navbar-category';
 
 export { getServerSideProps } from '@/framework/search.ssr';
 
@@ -42,6 +43,7 @@ export default function SearchPage() {
     <div className="w-full">
       <div className="mb-7 flex flex-col items-center justify-between md:flex-row">
         {/* //FIXME: */}
+        <NavbarCategory />
         <SearchCount
           from={paginatorInfo?.firstItem ?? 0}
           to={paginatorInfo?.lastItem ?? 0}

@@ -15,6 +15,7 @@ import { useRouter } from 'next/router';
 import * as yup from 'yup';
 import { GoogleIcon } from '../icons/google-icon';
 import PreknowLogo from '../icons/preknow-logo';
+// import { MobileIcon } from '../icons/mobile-icon';
 
 const loginFormSchema = yup.object().shape({
   email: yup
@@ -32,6 +33,7 @@ function LoginForm() {
 
   function onSubmit({ email, password }: LoginUserInput, e: any) {
     e.preventDefault();
+    console.log(email, password);
     login({
       email,
       password,

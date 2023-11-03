@@ -1,5 +1,6 @@
 import { useModalAction } from '@/components/ui/modal/modal.context';
 import { useTranslation } from 'next-i18next';
+import axios from 'axios';
 import {
   QueryClient,
   useMutation,
@@ -31,9 +32,11 @@ import { clearCheckoutAtom } from '@/store/checkout';
 export function useUser() {
   const [isAuthorized] = useAtom(authorizationAtom);
   const [userId, setUserId] = useState<string | null>(null);
-
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [mutate, setMutate] = useState<any>(null);
   useEffect(() => {
     setUserId(localStorage.getItem('userId'));
+    setAccessToken(localStorage.getItem('accessToken'));
   }, [isAuthorized]);
   // const { data, isLoading, error } = useQuery(
   //   [API_ENDPOINTS.USERS_ME],
@@ -46,7 +49,30 @@ export function useUser() {
   //   }
   // );
 
-  const { mutate, isLoading, error } = useMutation(preknowClient.users.me, {
+  const handleVerifyMe = async () => {
+    try {
+      const response = await axios.post(
+        'http://localhost:5001/auth/me',
+        {
+          userId: localStorage.getItem('userId'),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+      setMutate(response.data);
+    } catch (error) {
+      console.log('error: ', error);
+    }
+  };
+  useEffect(() => {
+    handleVerifyMe();
+  }, [isAuthorized]);
+
+  const { isLoading, error } = useMutation(preknowClient.users.me, {
     onSuccess: (data) => {
       console.log('data: ', data);
     },
@@ -54,7 +80,8 @@ export function useUser() {
       console.log('error: ', error);
     },
   });
-
+  console.log('isAuthorized: ', isAuthorized);
+  console.log('userId: ', userId);
   console.log('me: ', mutate);
   //TODO: do some improvement here
   return { me: mutate, isLoading, error, isAuthorized };
@@ -136,14 +163,17 @@ export function useLogin() {
       }
       setToken(data.access_token);
       setAuthorized(true);
+      console.log('data: ', data);
       closeModal();
       localStorage.setItem('userId', data.userId);
+      localStorage.setItem('accessToken', data.access_token);
     },
     onError: (error: Error) => {
       console.log(error.message);
       toast.error(t('error-something-wrong'));
     },
   });
+  console.log(mutate);
 
   return { mutate, isLoading, serverError, setServerError };
 }

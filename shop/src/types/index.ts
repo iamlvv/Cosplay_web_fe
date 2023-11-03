@@ -48,6 +48,7 @@ export interface QueryOptions {
   language: string;
   page?: number;
   limit?: number;
+  query?: string;
 }
 
 export interface PaginatorInfo<T> {

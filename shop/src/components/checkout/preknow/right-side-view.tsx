@@ -16,8 +16,10 @@ export const RightSideView = ({
   hideTitle?: boolean;
 }) => {
   const { me } = useUser();
-
+  console.log(me);
   const [verifiedResponse] = useAtom(verifiedResponseAtom);
+  console.log('verifiedResponse', verifiedResponse);
+  console.log(isEmpty(verifiedResponse));
   if (isEmpty(verifiedResponse)) {
     return (
       <>

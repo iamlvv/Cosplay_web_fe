@@ -41,7 +41,7 @@ const PreknowFooter = () => {
           <div className="flexitems-start mb-[2px]">
             <PreknowLogo />
           </div>
-          <p className="text-xl">Give used books better life</p>
+          <p className="text-xl">Every costume. Every occasion.</p>
         </div>
       </div>
       {/* Bottom */}

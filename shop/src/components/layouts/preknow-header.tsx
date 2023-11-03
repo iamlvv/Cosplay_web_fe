@@ -11,6 +11,7 @@ import PreknowLogo from '../icons/preknow-logo';
 import { useModalAction } from '../ui/modal/modal.context';
 import Search from '../ui/search/search';
 import StaticMenu from './menu/static-menu';
+import SignupButton from './menu/singup-button';
 
 const CartCounterIconButton = dynamic(
   () => import('@/components/cart/cart-counter-icon-button'),
@@ -27,7 +28,6 @@ const PreknowHeader = () => {
   const [displayMobileHeaderSearch] = useAtom(displayMobileHeaderSearchAtom);
   const [isAuthorize] = useAtom(authorizationAtom);
   const { openModal } = useModalAction();
-
   const handleCartClick = () => {
     if (!isAuthorize) {
       openModal('LOGIN_VIEW');
@@ -79,18 +79,18 @@ const PreknowHeader = () => {
                 className="flex cursor-pointer items-center font-normal text-heading no-underline transition duration-200 hover:text-accent focus:text-accent"
               >
                 <CartCounterIconButton />
-                <span className="ml-2">{t('nav-menu-cart')}</span>
+                {/* <span className="ml-2">{t('nav-menu-cart')}</span> */}
               </p>
             </li>
             <StaticMenu />
-            <li className="hidden lg:inline-block xl:hidden">
+            {/* <li className="hidden lg:inline-block xl:hidden">
               <Link
-                href={`${router.asPath}/search`}
+                href={`${router.asPath}search`}
                 className="flex items-center font-normal text-heading no-underline transition duration-200 hover:text-accent focus:text-accent"
               >
                 {t('text-search')}
               </Link>
-            </li>
+            </li> */}
           </ul>
           {/* <CartCounterIconButton /> */}
           <div className="flex items-center space-x-4 rtl:space-x-reverse">
@@ -102,6 +102,7 @@ const PreknowHeader = () => {
             >
               {t('text-become-seller')}
             </a> */}
+            {isAuthorize ? null : <SignupButton />}
             {isAuthorize ? <AuthorizedMenu /> : <JoinButton />}
           </div>
         </div>

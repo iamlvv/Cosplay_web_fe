@@ -109,7 +109,6 @@ export default function CheckoutPage() {
   const handleGatewayChange = (e: any) => {
     setGateway(e.target.value);
   };
-
   return (
     <>
       <Seo noindex={true} nofollow={true} />
