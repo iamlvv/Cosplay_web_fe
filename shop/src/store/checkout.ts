@@ -2,6 +2,7 @@ import { Address, Coupon } from '@/types';
 import { CHECKOUT } from '@/lib/constants';
 import { atom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
+import { DeliveryMethodType, PaymentGatewayType } from '@/types/preknow';
 interface DeliveryTime {
   id: string;
   title: string;
@@ -15,44 +16,47 @@ interface VerifiedResponse {
   wallet_currency: number;
 }
 interface CheckoutState {
+  orderId: string | null;
   billing_address: Address | null;
   shipping_address: Address | null;
-  payment_gateway: PaymentMethodName;
+  payment_gateway: PaymentGatewayType;
   delivery_time: DeliveryTime | null;
   customer_contact: string;
   verified_response: VerifiedResponse | null;
   coupon: Coupon | null;
   payable_amount: number;
   use_wallet: boolean;
-  delivery_method: DeliveryMethodName;
+  delivery_method: DeliveryMethodType;
   [key: string]: unknown;
 }
 export const defaultCheckout: CheckoutState = {
+  orderId: null,
   billing_address: null,
   shipping_address: null,
   delivery_time: null,
-  payment_gateway: 'CASH_ON_DELIVERY',
+  payment_gateway: PaymentGatewayType.CASH_ON_DELIVERY,
   customer_contact: '',
   verified_response: null,
   coupon: null,
   payable_amount: 0,
   use_wallet: false,
-  delivery_method: 'SAVE',
+  delivery_method: DeliveryMethodType.SAVE,
 };
-export type PaymentMethodName =
-  | 'CASH_ON_DELIVERY'
-  | 'STRIPE'
-  | 'MOMO'
-  | 'ZALOPAY'
-  | 'VNPAY';
-
-export type DeliveryMethodName = 'SAVE' | 'FAST' | 'EXPRESS';
 
 // Original atom.
 export const checkoutAtom = atomWithStorage(CHECKOUT, defaultCheckout);
 export const clearCheckoutAtom = atom(null, (_get, set, _data) => {
   return set(checkoutAtom, defaultCheckout);
 });
+
+export const orderIdAtom = atom(
+  (get) => get(checkoutAtom).orderId,
+  (get, set, data: string) => {
+    const prev = get(checkoutAtom);
+    return set(checkoutAtom, { ...prev, orderId: data });
+  }
+);
+
 export const billingAddressAtom = atom(
   (get) => get(checkoutAtom).billing_address,
   (get, set, data: Address) => {
@@ -76,14 +80,14 @@ export const deliveryTimeAtom = atom(
 );
 export const paymentGatewayAtom = atom(
   (get) => get(checkoutAtom).payment_gateway,
-  (get, set, data: PaymentMethodName) => {
+  (get, set, data: PaymentGatewayType) => {
     const prev = get(checkoutAtom);
     return set(checkoutAtom, { ...prev, payment_gateway: data });
   }
 );
 export const deliveryMethodAtom = atom(
   (get) => get(checkoutAtom).delivery_method,
-  (get, set, data: DeliveryMethodName) => {
+  (get, set, data: DeliveryMethodType) => {
     const prev = get(checkoutAtom);
     return set(checkoutAtom, { ...prev, delivery_method: data });
   }

@@ -1,19 +1,19 @@
-import { useTranslation } from 'next-i18next';
+import contactIllustration from '@/assets/contact-illustration.svg';
+import * as socialIcons from '@/components/icons/social';
+import { getLayout } from '@/components/layouts/layout';
+import Seo from '@/components/seo/seo';
 import ContactForm from '@/components/settings/contact-form';
 import { Image } from '@/components/ui/image';
-import contactIllustration from '@/assets/contact-illustration.svg';
-import { getLayout } from '@/components/layouts/layout';
-import { formatAddress } from '@/lib/format-address';
-import { getIcon } from '@/lib/get-icon';
-import isEmpty from 'lodash/isEmpty';
-import * as socialIcons from '@/components/icons/social';
-import Seo from '@/components/seo/seo';
+import { siteSettings } from '@/config/site';
 import { useSettings } from '@/framework/settings';
+import { getIcon } from '@/lib/get-icon';
+import { useTranslation } from 'next-i18next';
 export { getStaticProps } from '@/framework/general.ssr';
 
 export const ContactPage = () => {
   const { t } = useTranslation('common');
-  const { settings } : any = useSettings();
+  const { settings }: any = useSettings();
+
   return (
     <>
       <Seo title={'Contact'} url={'contact'} />
@@ -34,9 +34,7 @@ export const ContactPage = () => {
                 {t('text-address')}
               </span>
               <span className="text-sm text-body">
-                {!isEmpty(formatAddress(settings?.contactDetails?.location))
-                  ? formatAddress(settings?.contactDetails?.location)
-                  : t('common:text-no-address')}
+                {siteSettings.footer.address}
               </span>
             </div>
 
@@ -45,32 +43,27 @@ export const ContactPage = () => {
                 {t('text-phone')}
               </span>
               <span className="text-sm text-body">
-                {settings?.contactDetails?.contact
-                  ? settings?.contactDetails?.contact
-                  : t('text-no-contact')}
+                {siteSettings.footer.phone}
               </span>
             </div>
-            {settings?.contactDetails?.website && (
-              <div className="mb-8 flex flex-col">
-                <span className="mb-3 font-semibold text-heading">
-                  {t('text-website')}
+            <div className="mb-8 flex flex-col">
+              <span className="mb-3 font-semibold text-heading">
+                {t('text-website')}
+              </span>
+              <div className="flex items-center justify-between">
+                <span className="text-sm text-body">
+                  https://preknow.vercel.app
                 </span>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-body">
-                    {settings?.contactDetails?.website}
-                  </span>
-                  <a
-                    href={settings?.contactDetails?.website ?? '#'}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-sm font-semibold text-accent hover:text-accent-hover focus:text-blue-500 focus:outline-none"
-                  >
-                    {t('text-visit-site')}
-                  </a>
-                </div>
+                <a
+                  href="https://preknow.vercel.app"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sm font-semibold text-accent hover:text-accent-hover focus:text-blue-500 focus:outline-none"
+                >
+                  {t('text-visit-site')}
+                </a>
               </div>
-            )}
-
+            </div>
             <div className="mb-8 flex flex-col">
               <span className="mb-4 font-semibold text-heading">
                 {t('text-follow-us')}

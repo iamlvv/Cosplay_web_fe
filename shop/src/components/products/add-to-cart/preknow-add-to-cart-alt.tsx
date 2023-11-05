@@ -20,52 +20,20 @@ function FavoriteButton({
   productId: string;
   className?: string;
 }) {
-  const { isAuthorized } = useUser();
-  const { toggleWishlist, isLoading: adding } = useToggleWishlist(productId);
-  const { inWishlist, isLoading: checking } = useInWishlist({
-    enabled: isAuthorized,
-    product_id: productId,
-  });
-
-  const { openModal } = useModalAction();
-  function toggle() {
-    if (!isAuthorized) {
-      openModal('LOGIN_VIEW');
-      return;
-    }
-    toggleWishlist({ product_id: productId });
-  }
-  const isLoading = adding || checking;
-  if (isLoading) {
-    return (
-      <div
-        className={classNames(
-          'mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-300',
-          className
-        )}
-      >
-        <Spinner simple={true} className="flex h-5 w-5" />
-      </div>
-    );
-  }
   return (
     <button
       type="button"
       className={classNames(
         'mt-0.5 flex h-10 shrink-0 items-center justify-center rounded-md border border-gray-300 px-3 font-semibold text-accent transition-colors',
         {
-          '!border-accent': inWishlist,
+          '!border-accent': false,
         },
         className
       )}
-      onClick={toggle}
+      onClick={() => {}}
     >
-      {inWishlist ? (
-        <HeartFillIcon className="mr-2 h-5 w-5" />
-      ) : (
-        <HeartOutlineIcon className="mr-2 h-5 w-5" />
-      )}
-      Favourite
+      <HeartOutlineIcon className="mr-2 h-5 w-5" />
+      Yêu thích
     </button>
   );
 }

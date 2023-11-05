@@ -1,12 +1,11 @@
-import type { Manufacturer, SettingsQueryOptions } from '@/types';
+import type { Manufacturer } from '@/types';
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { QueryClient } from 'react-query';
+import { dehydrate } from 'react-query/hydration';
 import invariant from 'tiny-invariant';
 import client from './client';
-import { PRODUCTS_PER_PAGE, TYPES_PER_PAGE } from './client/variables';
-import { QueryClient } from 'react-query';
-import { API_ENDPOINTS } from '@/framework/client/api-endpoints';
-import { dehydrate } from 'react-query/hydration';
+import { PRODUCTS_PER_PAGE } from './client/variables';
 
 // This function gets called at build time
 type ParsedQueryParams = {
@@ -37,13 +36,16 @@ export const getStaticProps: GetStaticProps<
 > = async ({ params, locale }) => {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery(
-    [API_ENDPOINTS.SETTINGS, { language: locale }],
-    ({ queryKey }) => client.settings.all(queryKey[1] as SettingsQueryOptions)
-  );
+  // await queryClient.prefetchQuery(
+  //   [API_ENDPOINTS.SETTINGS, { language: locale }],
+  //   ({ queryKey }) => client.settings.all(queryKey[1] as SettingsQueryOptions)
+  // );
 
   try {
-    const manufacturer = await client.manufacturers.get({slug: params!.manufacturer, language: locale});
+    const manufacturer = await client.manufacturers.get({
+      slug: params!.manufacturer,
+      language: locale,
+    });
     return {
       props: {
         manufacturer,

@@ -22,11 +22,10 @@ const registerFormSchema = yup.object().shape({
 function RegisterForm() {
   const { t } = useTranslation('common');
   const { openModal } = useModalAction();
-  const { mutate: register, isLoading } = useRegister();
+  const { mutate, isLoading, formError } = useRegister();
 
-  function onSubmit({ name, email, password }: RegisterUserInput, e: any) {
-    e.preventDefault();
-    register({
+  function onSubmit({ name, email, password }: RegisterUserInput) {
+    mutate({
       name,
       email,
       password,
@@ -38,7 +37,7 @@ function RegisterForm() {
       <Form<RegisterUserInput>
         onSubmit={onSubmit}
         validationSchema={registerFormSchema}
-        //serverError={formError}
+        serverError={formError}
       >
         {({ register, formState: { errors } }) => (
           <>

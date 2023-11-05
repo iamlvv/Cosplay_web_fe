@@ -5,7 +5,6 @@ import type {
   Path,
   UnpackNestedValue,
   DeepPartial,
-  FieldValues,
 } from 'react-hook-form';
 import type { SchemaOf } from 'yup';
 import { useForm } from 'react-hook-form';
@@ -14,7 +13,7 @@ import { useEffect } from 'react';
 type ServerErrors<T> = {
   [Property in keyof T]: string;
 };
-type FormProps<TFormValues extends FieldValues> = {
+type FormProps<TFormValues> = {
   onSubmit: SubmitHandler<TFormValues>;
   children: (methods: UseFormReturn<TFormValues>) => React.ReactNode;
   useFormProps?: UseFormProps<TFormValues>;

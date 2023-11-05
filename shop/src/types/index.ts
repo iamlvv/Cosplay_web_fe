@@ -104,6 +104,7 @@ export interface CategoryQueryOptions extends QueryOptions {
   language: string;
   parent: string | null;
   type: string;
+  query?: string;
 }
 
 export interface TagQueryOptions extends QueryOptions {
@@ -483,7 +484,6 @@ export interface PasswordChangeResponse {
 export interface AuthResponse {
   token: string;
   permissions: string[];
-  userId: string;
 }
 
 export interface OTPResponse {

@@ -14,7 +14,7 @@ import { useAtom } from 'jotai';
 import { signOut as socialLoginSignOut } from 'next-auth/react';
 import { useToken } from '@/lib/hooks/use-token';
 import { API_ENDPOINTS } from './client/api-endpoints';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type {
   RegisterUserInput,
   ChangePasswordUserInput,
@@ -30,34 +30,18 @@ import { clearCheckoutAtom } from '@/store/checkout';
 
 export function useUser() {
   const [isAuthorized] = useAtom(authorizationAtom);
-  const [userId, setUserId] = useState<string | null>(null);
-
-  useEffect(() => {
-    setUserId(localStorage.getItem('userId'));
-  }, [isAuthorized]);
-  // const { data, isLoading, error } = useQuery(
-  //   [API_ENDPOINTS.USERS_ME],
-  //   preknowClient.users.me(userId),
-  //   {
-  //     enabled: isAuthorized,
-  //     onError: (err) => {
-  //       console.log(err);
-  //     },
-  //   }
-  // );
-
-  const { mutate, isLoading, error } = useMutation(preknowClient.users.me, {
-    onSuccess: (data) => {
-      console.log('data: ', data);
-    },
-    onError: (error) => {
-      console.log('error: ', error);
-    },
-  });
-
-  console.log('me: ', mutate);
+  const { data, isLoading, error } = useQuery(
+    [API_ENDPOINTS.USERS_ME],
+    preknowClient.users.me,
+    {
+      enabled: isAuthorized,
+      onError: (err) => {
+        console.log(err);
+      },
+    }
+  );
   //TODO: do some improvement here
-  return { me: mutate, isLoading, error, isAuthorized };
+  return { me: data, isLoading, error, isAuthorized };
 }
 
 export const useDeleteAddress = () => {
@@ -137,11 +121,9 @@ export function useLogin() {
       setToken(data.access_token);
       setAuthorized(true);
       closeModal();
-      localStorage.setItem('userId', data.userId);
     },
     onError: (error: Error) => {
       console.log(error.message);
-      toast.error(t('error-something-wrong'));
     },
   });
 
@@ -279,38 +261,32 @@ export function useRegister() {
   const { setToken } = useToken();
   const [_, setAuthorized] = useAtom(authorizationAtom);
   const { closeModal } = useModalAction();
-  let [serverError, setServerError] = useState<string | null>(null);
-  // let [formError, setFormError] = useState<Partial<RegisterUserInput> | null>(
-  //   null
-  // );
-
-  const { mutate, isLoading, error } = useMutation(
-    preknowClient.users.register,
-    {
-      onSuccess: (data) => {
-        // if (!data.access_token) {
-        //   setServerError('error-credential-wrong');
-        //   toast.error(t('error-credential-wrong'));
-        //   return;
-        // }
-        setToken(data.access_token);
-        setAuthorized(true);
-        localStorage.setItem('userId', data.userId);
-        closeModal();
-      },
-      onError: (error: Error) => {
-        // const {
-        //   response: { data },
-        // }: any = error ?? {};
-
-        // setFormError(data);
-        console.log(error.message);
-        toast.error(t('error-something-wrong'));
-      },
-    }
+  let [formError, setFormError] = useState<Partial<RegisterUserInput> | null>(
+    null
   );
 
-  return { mutate, isLoading, serverError, setServerError };
+  const { mutate, isLoading } = useMutation(client.users.register, {
+    onSuccess: (data) => {
+      if (data?.token && data?.permissions?.length) {
+        setToken(data?.token);
+        setAuthorized(true);
+        closeModal();
+        return;
+      }
+      if (!data.token) {
+        toast.error(t('error-credential-wrong'));
+      }
+    },
+    onError: (error) => {
+      const {
+        response: { data },
+      }: any = error ?? {};
+
+      setFormError(data);
+    },
+  });
+
+  return { mutate, isLoading, formError, setFormError };
 }
 
 export function useLogout() {

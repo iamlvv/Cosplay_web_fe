@@ -10,8 +10,18 @@ import usePrice from '@/lib/use-price';
 import { useCart } from '@/store/quick-cart/cart.context';
 import type { NextPageWithLayout } from '@/types';
 import { AnimateSharedLayout, motion } from 'framer-motion';
+import { GetStaticProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
+
+export const getStaticProps: GetStaticProps = async ({ params, locale }) => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale!, ['common'])),
+    },
+  };
+};
 
 const CartItem = dynamic(() => import('@/components/cart/preknow-cart-item'));
 

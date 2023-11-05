@@ -11,6 +11,7 @@ import { useAtom } from 'jotai';
 import { drawerAtom } from '@/store/drawer-atom';
 import { authorizationAtom } from '@/store/authorization-atom';
 import { useIsRTL } from '@/lib/locals';
+import { Routes } from '@/config/routes';
 
 export default function MobileNavigation({
   children,
@@ -57,7 +58,7 @@ export default function MobileNavigation({
 
         <motion.button
           whileTap={{ scale: 0.88 }}
-          onClick={() => handleSidebar('cart')}
+          onClick={() => router.push(Routes.cart)}
           className="product-cart relative flex h-full items-center justify-center p-2 focus:text-accent focus:outline-none"
         >
           <span className="sr-only">{t('text-cart')}</span>

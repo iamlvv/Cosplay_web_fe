@@ -33,10 +33,8 @@ export const SETTINGS = {
     },
     logo: {
       id: '862',
-      original:
-        'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/860/PickBazar.png',
-      thumbnail:
-        'https://pickbazarlaravel.s3.ap-southeast-1.amazonaws.com/860/conversions/PickBazar-thumbnail.jpg',
+      original: '',
+      thumbnail: '',
     },
     useOtp: false,
     currency: 'VND',

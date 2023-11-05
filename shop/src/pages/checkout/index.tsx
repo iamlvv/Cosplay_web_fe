@@ -5,8 +5,9 @@ import VNpayIcon from '@/assets/preknow/vnpay-icon.svg';
 import ZalopayIcon from '@/assets/preknow/zalopay-icon.svg';
 import HomeLayout from '@/components/layouts/_home';
 import Seo from '@/components/seo/seo';
-import usePrice from '@/lib/use-price';
+import { formatPriceVND } from '@/lib/use-price';
 import { deliveryMethodAtom, paymentGatewayAtom } from '@/store/checkout';
+import { DeliveryMethodType, PaymentGatewayType } from '@/types/preknow';
 import { useAtom } from 'jotai';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
@@ -17,37 +18,24 @@ const RightSideView = dynamic(
   { ssr: false }
 );
 
-enum deliveryMethod {
-  SAVE = 'SAVE',
-  FAST = 'FAST',
-  EXPRESS = 'EXPRESS',
-}
-
-enum paymentGateway {
-  CASH_ON_DELIVERY = 'CASH_ON_DELIVERY',
-  MOMO = 'MOMO',
-  ZALOPAY = 'ZALOPAY',
-  VNPAY = 'VNPAY',
-}
-
-const deliveryMethodList: any[] = [
+export const deliveryMethodList: any[] = [
   {
     id: 1,
-    value: deliveryMethod.SAVE,
+    value: DeliveryMethodType.SAVE,
     price: 16000,
     title: 'Giao hàng tiết kiệm',
     desc: 'Giao từ 3 đến 4 ngày',
   },
   {
     id: 2,
-    value: deliveryMethod.FAST,
+    value: DeliveryMethodType.FAST,
     price: 44000,
     title: 'Giao hàng nhanh',
     desc: 'Giao từ 1 đến 2 ngày',
   },
   {
     id: 3,
-    value: deliveryMethod.EXPRESS,
+    value: DeliveryMethodType.EXPRESS,
     price: 212000,
     title: 'Hỏa tốc',
     desc: 'Giao trong ngày',
@@ -57,7 +45,7 @@ const deliveryMethodList: any[] = [
 const paymentGatewayList: any[] = [
   {
     id: 1,
-    value: paymentGateway.CASH_ON_DELIVERY,
+    value: PaymentGatewayType.CASH_ON_DELIVERY,
     title: (
       <>
         <Image src={CashIcon} alt="cash-icon" />
@@ -67,7 +55,7 @@ const paymentGatewayList: any[] = [
   },
   {
     id: 2,
-    value: paymentGateway.MOMO,
+    value: PaymentGatewayType.MOMO,
     title: (
       <>
         <Image src={MomoIcon} alt="momo-icon" />
@@ -77,7 +65,7 @@ const paymentGatewayList: any[] = [
   },
   {
     id: 3,
-    value: paymentGateway.ZALOPAY,
+    value: PaymentGatewayType.ZALOPAY,
     title: (
       <>
         <Image src={ZalopayIcon} alt="zalopay-icon" />
@@ -87,7 +75,7 @@ const paymentGatewayList: any[] = [
   },
   {
     id: 4,
-    value: paymentGateway.VNPAY,
+    value: PaymentGatewayType.VNPAY,
     title: (
       <>
         <Image src={VNpayIcon} alt="vnpay-icon" />
@@ -99,7 +87,6 @@ const paymentGatewayList: any[] = [
 
 export default function CheckoutPage() {
   const [gateway, setGateway] = useAtom(paymentGatewayAtom);
-
   const [deliveryMethod, setDeliveryMethod] = useAtom(deliveryMethodAtom);
 
   const handleDeliveryMethodChange = (e: any) => {
@@ -123,10 +110,6 @@ export default function CheckoutPage() {
               <div>
                 <ul className="w-full rounded-lg border border-gray-200 bg-white text-sm font-medium">
                   {deliveryMethodList.map((m) => {
-                    const { price } = usePrice({
-                      amount: m.price,
-                    });
-
                     return (
                       <li
                         key={m.id}
@@ -150,7 +133,7 @@ export default function CheckoutPage() {
                               <h6 className="text-base">{m.title}</h6>
                               <p className="text-xs text-muted">{m.desc}</p>
                             </div>
-                            <div>{price}</div>
+                            <div>{formatPriceVND(m.price)}</div>
                           </label>
                         </div>
                       </li>

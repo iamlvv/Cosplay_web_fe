@@ -12,7 +12,6 @@ import type {
   CreateAbuseReportInput,
   CreateContactUsInput,
   CreateFeedbackInput,
-  CreateOrderInput,
   CreateQuestionInput,
   CreateRefundInput,
   CreateReviewInput,
@@ -25,7 +24,6 @@ import type {
   ManufacturerQueryOptions,
   MyQuestionQueryOptions,
   MyReportsQueryOptions,
-  Order,
   OrderPaginator,
   OrderQueryOptions,
   OrderStatusPaginator,
@@ -57,7 +55,6 @@ import type {
   Type,
   TypeQueryOptions,
   UpdateReviewInput,
-  UpdateUserInput,
   VerifiedCheckoutData,
   VerifyCouponInputType,
   VerifyCouponResponse,
@@ -72,19 +69,23 @@ import type {
 import { API_ENDPOINTS } from './api-endpoints';
 import { HttpClient } from './http-client';
 import { OTPVerifyResponse } from '@/types';
-import { AuthResponse, SocialLoginInputType, User } from '@/types/preknow';
+import {
+  AuthResponse,
+  CreateOrderInput,
+  Order,
+  SocialLoginInputType,
+  UpdateUserInput,
+  User,
+} from '@/types/preknow';
 
 class PreknowClient {
   products = {
     all: ({ ...params }: Partial<ProductQueryOptions>) =>
-      HttpClient.get<ProductPaginator>('http://localhost:5001/store/products', {
+      HttpClient.get<ProductPaginator>(API_ENDPOINTS.PRODUCTS, {
         ...params,
       }),
     popular: (params: Partial<PopularProductQueryOptions>) =>
-      HttpClient.get<Product[]>(
-        `http://localhost:5001/store/products/popular-products`,
-        params
-      ),
+      HttpClient.get<Product[]>(API_ENDPOINTS.PRODUCTS_POPULAR, params),
 
     questions: ({ question, ...params }: QuestionQueryOptions) =>
       HttpClient.get<QuestionPaginator>(API_ENDPOINTS.PRODUCTS_QUESTIONS, {
@@ -96,7 +97,7 @@ class PreknowClient {
       }),
 
     get: (id: string) =>
-      HttpClient.get<Product>(`http://localhost:5001/store/products/${id}`),
+      HttpClient.get<Product>(`${API_ENDPOINTS.PRODUCTS}/${id}`),
 
     createFeedback: (input: CreateFeedbackInput) =>
       HttpClient.post<Feedback>(API_ENDPOINTS.FEEDBACK, input),
@@ -148,9 +149,16 @@ class PreknowClient {
   };
   categories = {
     all: ({ ...params }: Partial<CategoryQueryOptions>) =>
-      HttpClient.get<CategoryPaginator>('http://localhost:5001/categories', {
+      HttpClient.get<CategoryPaginator>(API_ENDPOINTS.CATEGORIES, {
         ...params,
       }),
+    subcategories: ({ ...params }: Partial<CategoryQueryOptions>, query: any) =>
+      HttpClient.get<CategoryPaginator>(
+        'http://localhost:5001/store/products/subcategoryof?category=',
+        {
+          ...query,
+        }
+      ),
   };
   tags = {
     all: (params: Partial<TagQueryOptions>) =>
@@ -219,10 +227,10 @@ class PreknowClient {
         with: 'refund',
         ...params,
       }),
-    get: (tracking_number: string) =>
-      HttpClient.get<Order>(`${API_ENDPOINTS.ORDERS}/${tracking_number}`),
+    get: (orderId: string) =>
+      HttpClient.get<Order>(`${API_ENDPOINTS.ORDERS}/${orderId}`),
     create: (input: CreateOrderInput) =>
-      HttpClient.post<Order>(API_ENDPOINTS.ORDERS, input),
+      HttpClient.post<any>(API_ENDPOINTS.ORDERS, input),
     statuses: (params: Pick<QueryOptions, 'limit'>) =>
       HttpClient.get<OrderStatusPaginator>(API_ENDPOINTS.ORDERS_STATUS, params),
     refunds: (params: Pick<QueryOptions, 'limit'>) =>
@@ -247,17 +255,13 @@ class PreknowClient {
       ),
   };
   users = {
-    me: (input: string) =>
-      HttpClient.post<User>('http://localhost:5001/auth/me', input),
+    me: () => HttpClient.get<User>(API_ENDPOINTS.USERS_ME),
     update: (user: UpdateUserInput) =>
-      HttpClient.put<User>(`${API_ENDPOINTS.USERS}/${user.id}`, user),
+      HttpClient.patch<User>(`${API_ENDPOINTS.USERS}/${user._id}`, user),
     login: (input: LoginUserInput) =>
-      HttpClient.post<AuthResponse>('http://localhost:5001/auth/login', input),
+      HttpClient.post<AuthResponse>(API_ENDPOINTS.USERS_LOGIN, input),
     socialLogin: (input: SocialLoginInputType) =>
-      HttpClient.post<AuthResponse>(
-        'http://localhost:5001/auth/social-login-token',
-        input
-      ),
+      HttpClient.post<AuthResponse>(API_ENDPOINTS.SOCIAL_LOGIN, input),
     sendOtpCode: (input: SendOtpCodeInputType) =>
       HttpClient.post<OTPResponse>(API_ENDPOINTS.SEND_OTP_CODE, input),
     verifyOtpCode: (input: VerifyOtpInputType) =>
@@ -265,10 +269,7 @@ class PreknowClient {
     OtpLogin: (input: OtpLoginInputType) =>
       HttpClient.post<AuthResponse>(API_ENDPOINTS.OTP_LOGIN, input),
     register: (input: RegisterUserInput) =>
-      HttpClient.post<AuthResponse>(
-        'http://localhost:5001/auth/register',
-        input
-      ),
+      HttpClient.post<AuthResponse>(API_ENDPOINTS.USERS_REGISTER, input),
     forgotPassword: (input: ForgotPasswordUserInput) =>
       HttpClient.post<PasswordChangeResponse>(
         API_ENDPOINTS.USERS_FORGOT_PASSWORD,

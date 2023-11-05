@@ -1,13 +1,12 @@
 import Button from '@/components/ui/button';
 import Card from '@/components/ui/cards/card';
-import FileInput from '@/components/ui/forms/file-input';
+import { Form } from '@/components/ui/forms/form';
 import Input from '@/components/ui/forms/input';
 import TextArea from '@/components/ui/forms/text-area';
-import { useTranslation } from 'next-i18next';
+import { useUpdateUser } from '@/hooks/user';
+import { UpdateUserInput, User } from '@/types/preknow';
 import pick from 'lodash/pick';
-import { Form } from '@/components/ui/forms/form';
-import { useUpdateUser } from '@/framework/user';
-import type { UpdateUserInput, User } from '@/types';
+import { useTranslation } from 'next-i18next';
 
 const ProfileForm = ({ user }: { user: User }) => {
   const { t } = useTranslation('common');
@@ -18,14 +17,15 @@ const ProfileForm = ({ user }: { user: User }) => {
       return false;
     }
     updateProfile({
-      id: user.id,
+      _id: user._id,
       name: values.name,
-      profile: {
-        id: user?.profile?.id,
-        bio: values?.profile?.bio ?? '',
-        //@ts-ignore
-        avatar: values?.profile?.avatar?.[0],
-      },
+      bio: values?.bio ?? '',
+      // profile: {
+      //   id: user?.profile?.id,
+      //   bio: values?.profile?.bio ?? '',
+      //   //@ts-ignore
+      //   avatar: values?.profile?.avatar?.[0],
+      // },
     });
   }
 
@@ -34,7 +34,7 @@ const ProfileForm = ({ user }: { user: User }) => {
       onSubmit={onSubmit}
       useFormProps={{
         ...(user && {
-          defaultValues: pick(user, ['name', 'profile.bio', 'profile.avatar']),
+          defaultValues: pick(user, ['name', 'bio']),
         }),
       }}
     >
@@ -42,9 +42,9 @@ const ProfileForm = ({ user }: { user: User }) => {
         <>
           <div className="mb-8 flex">
             <Card className="w-full">
-              <div className="mb-8">
+              {/* <div className="mb-8">
                 <FileInput control={control} name="profile.avatar" />
-              </div>
+              </div> */}
 
               <div className="mb-6 flex flex-row">
                 <Input
@@ -58,7 +58,7 @@ const ProfileForm = ({ user }: { user: User }) => {
               <TextArea
                 label={t('text-bio')}
                 //@ts-ignore
-                {...register('profile.bio')}
+                {...register('bio')}
                 variant="outline"
                 className="mb-6"
               />

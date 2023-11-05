@@ -37,7 +37,7 @@ const PreknowDetails: React.FC<Props> = ({ product }) => {
     name,
     imageUrl,
     description,
-    category,
+    category_slug,
     author,
     manufacturer,
     manufacture_at,
@@ -45,6 +45,8 @@ const PreknowDetails: React.FC<Props> = ({ product }) => {
     numberOfPage,
     shop,
   } = product ?? {};
+
+  console.log('product: ', product);
 
   const { t } = useTranslation('common');
 
@@ -108,14 +110,14 @@ const PreknowDetails: React.FC<Props> = ({ product }) => {
 
             {/* Tag section */}
             <div className="mt-4 flex">
-              {category?.name && (
+              {category_slug && (
                 <Link
-                  href={category?.slug || '/'}
-                  className="mr-3 rounded bg-gray-200 p-2 text-sm text-heading transition-colors hover:text-accent focus:bg-opacity-100 focus:outline-none"
+                  href={`/search?category=${category_slug}`}
+                  className="mr-3 rounded bg-gray-200 p-2 text-sm capitalize text-heading transition-colors hover:text-accent focus:bg-opacity-100 focus:outline-none"
                 >
                   <>
                     <PreKnowTagIcon className="mr-1 inline" />
-                    {category.name}
+                    {category_slug.replaceAll('-', ' ')}
                   </>
                 </Link>
               )}
