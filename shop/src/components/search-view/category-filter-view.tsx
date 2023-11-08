@@ -8,6 +8,7 @@ import ErrorMessage from '@/components/ui/error-message';
 import Spinner from '@/components/ui/loaders/spinner/spinner';
 import { useCategories, useSubCategories } from '@/hooks/category';
 
+const HOST = process.env.NEXT_PUBLIC_REST_API_ENDPOINT;
 interface Props {
   categories: any[];
   type?: any;
@@ -120,15 +121,12 @@ const CategoryFilter: React.FC<{ type?: any }> = ({ type }) => {
   });
 
   const getSubCategories = async (category: any) => {
-    fetch(
-      'http://localhost:5001/store/products/subcategoryof?category=' + category,
-      {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      }
-    )
+    fetch(`${HOST}/store/products/subcategoryof?category=` + category, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
       .then((res) =>
         res.json().then((data) => {
           setCategories(data);
@@ -138,7 +136,7 @@ const CategoryFilter: React.FC<{ type?: any }> = ({ type }) => {
   };
 
   const getClothingType = async () => {
-    fetch('http://localhost:5001/store/products/sharedSubcategories', {
+    fetch(`${HOST}/store/products/sharedSubcategories`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',

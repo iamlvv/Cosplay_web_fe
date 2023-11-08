@@ -81,12 +81,9 @@ import {
 class PreknowClient {
   products = {
     all: ({ ...params }: Partial<ProductQueryOptions>) =>
-      HttpClient.get<ProductPaginator>(
-        'http://localhost:5001/store/products?',
-        {
-          ...params,
-        }
-      ),
+      HttpClient.get<ProductPaginator>(API_ENDPOINTS.PRODUCTS, {
+        ...params,
+      }),
     popular: (params: Partial<PopularProductQueryOptions>) =>
       HttpClient.get<Product[]>(API_ENDPOINTS.PRODUCTS_POPULAR, params),
 
@@ -156,12 +153,9 @@ class PreknowClient {
         ...params,
       }),
     subcategories: ({ ...params }: Partial<CategoryQueryOptions>, query: any) =>
-      HttpClient.get<CategoryPaginator>(
-        'http://localhost:5001/store/products/subcategoryof?category=',
-        {
-          ...query,
-        }
-      ),
+      HttpClient.get<CategoryPaginator>(API_ENDPOINTS.PRODUCTS_SUBCATEGORIES, {
+        ...query,
+      }),
   };
   tags = {
     all: (params: Partial<TagQueryOptions>) =>

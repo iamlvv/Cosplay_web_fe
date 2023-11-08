@@ -1,4 +1,5 @@
 export const API_ENDPOINTS = {
+  PRODUCTS_SUBCATEGORIES: '/store/products/subcategoryof?category=',
   PRODUCTS: '/store/products',
   PRODUCTS_POPULAR: '/store/products/popular-products',
   PRODUCTS_REVIEWS: '/reviews',
