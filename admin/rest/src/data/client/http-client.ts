@@ -9,7 +9,7 @@ invariant(
 );
 const Axios = axios.create({
   baseURL: process.env.NEXT_PUBLIC_REST_API_ENDPOINT,
-  timeout: 50000,
+  timeout: 1000000,
   headers: {
     'Content-Type': 'application/json',
   },

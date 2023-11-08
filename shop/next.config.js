@@ -10,6 +10,7 @@ const nextConfig = {
     dest: 'public',
     runtimeCaching,
   },
+  staticPageGenerationTimeout: 1000000,
   images: {
     domains: [
       'pickbazarlaravel.s3.ap-southeast-1.amazonaws.com',
