@@ -8,3 +8,4 @@ A full website selling cosplay stuff
 4. put .env files in root directory and `/shop`.
 5. From `/api/rest`, run `yarn start:dev`
 6. From root directory, run `yarn run dev:shop-rest`, ctrl click on the URL: localhost/3003
+  
