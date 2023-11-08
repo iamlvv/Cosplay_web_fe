@@ -39,7 +39,7 @@ export const SETTINGS = {
     useOtp: false,
     currency: 'VND',
     taxClass: 1,
-    siteTitle: 'PreKnow',
+    siteTitle: 'CostumeHaven',
     deliveryTime: [
       {
         title: 'Express Delivery',

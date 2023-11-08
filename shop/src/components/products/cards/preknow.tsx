@@ -31,6 +31,7 @@ const PreKnow: React.FC<PreKnowProps> = ({ product, className }) => {
         <div className="relative flex h-48 w-auto items-center justify-center sm:h-64">
           <span className="sr-only">{t('text-product-image')}</span>
           <Image
+            priority={true}
             src={imageUrl ?? productPlaceholder}
             alt={name}
             layout="fill"
@@ -49,12 +50,12 @@ const PreKnow: React.FC<PreKnowProps> = ({ product, className }) => {
           <h3 className="mb-1 truncate text-sm font-semibold text-heading">
             {name}
           </h3>
-          <h2 className="mb-2 truncate text-xs font-semibold text-muted">
+          {/* <h2 className="mb-2 truncate text-xs font-semibold text-muted">
             by {author}
-          </h2>
+          </h2> */}
           {/* End of product title */}
 
-          <div className="flex items-center justify-between">
+          <div className="mt-2 flex items-center justify-between">
             <span className="text-xl font-semibold text-red-600">{price}</span>
             {basePrice && (
               <del className="text-xl text-muted ltr:ml-2 rtl:mr-2">

@@ -12,17 +12,17 @@ export default function PrivacyPage() {
           Chính sách bảo mật
         </h1>
         <p className="px-0.5 text-sm text-body-dark md:text-base 2xl:text-lg">
-          Trong suốt quá trình hình thành và phát triển, PreKnow luôn nỗ lực đem
+          Trong suốt quá trình hình thành và phát triển, CostumeHaven luôn nỗ lực đem
           lại trải nghiệm mua sách cũ trực tuyến tin cậy, tiết kiệm và thấu hiểu
           người dùng. Chúng tôi tôn trọng quyền riêng tư của khách hàng và cam
           kết bảo mật thông tin cá nhân của khách hàng. Dưới đây là các nguyên
-          tắc khi tiếp cận quyền riêng tư, thông tin cá nhân của PreKnow.
+          tắc khi tiếp cận quyền riêng tư, thông tin cá nhân của CostumeHaven.
         </p>
         <h2 className="my-4 text-base font-semibold text-heading sm:mb-5 sm:text-xl md:text-lg 2xl:mb-7 2xl:text-2xl">
           Sự chấp thuận
         </h2>
         <p className="px-0.5 text-sm text-body-dark md:text-base 2xl:text-lg">
-          Bằng việc trao cho chúng tôi thông tin cá nhân của bạn, PreKnow cam
+          Bằng việc trao cho chúng tôi thông tin cá nhân của bạn, CostumeHaven cam
           kết rằng thông tin cá nhân của bạn sẽ được thu thập, sử dụng như được
           nêu trong Chính sách này. Nếu bạn không đồng ý với Chính sách này, bạn
           có thể dừng cung cấp cho chúng tôi bất cứ thông tin cá nhân nào
@@ -56,7 +56,7 @@ export default function PrivacyPage() {
             Cá nhân hoá: Chúng tôi có thể tổ hợp dữ liệu được thu thập để có một
             cái nhìn hoàn chỉnh hơn về người tiêu dùng và từ đó cho phép chúng
             tôi phục vụ tốt hơn ở các khía cạnh, cụ thể: (i) để cải thiện và cá
-            nhân hóa trải nghiệm của bạn trên PreKNow (ii) để cải thiện các tiện
+            nhân hóa trải nghiệm của bạn trên CostumeHaven (ii) để cải thiện các tiện
             ích, dịch vụ, điều chỉnh chúng phù hợp với các nhu cầu được cá thể
             hóa và đi đến những ý tưởng dịch vụ mới (iii) để phục vụ bạn với
             những giới thiệu, quảng cáo được điều chỉnh phù hợp với sự quan tâm
@@ -83,7 +83,7 @@ export default function PrivacyPage() {
         </ul>
         <p className="mb-4 px-0.5 text-sm text-body-dark md:text-base 2xl:text-lg">
           Đó là các thông tin cá nhân bạn cung cấp cho chúng tôi được thực hiện
-          chủ yếu trên website PreKnow bao gồm: họ tên, email, số điện thoại,
+          chủ yếu trên website CostumeHaven bao gồm: họ tên, email, số điện thoại,
           địa chỉ, thông tin đăng nhập tài khoản bao gồm thông tin bất kỳ cần
           thiết để thiết lập tài khoản ví dụ như tên đăng nhập, mật khẩu đăng
           nhập, ID/địa chỉ đăng nhập và câu hỏi/trả lời an ninh.
@@ -93,7 +93,7 @@ export default function PrivacyPage() {
         </ul>
         <p className="mb-4 px-0.5 text-sm text-body-dark md:text-base 2xl:text-lg">
           Chúng tôi sử dụng cookies và công nghệ theo dấu khác để thu thập một
-          số thông tin khi bạn tương tác trên website PreKnow.
+          số thông tin khi bạn tương tác trên website CostumeHaven.
         </p>
         <ul className="list-disc px-8 text-sm text-body-dark md:text-base 2xl:text-lg">
           <li>Từ những nguồn hợp pháp khác.</li>
@@ -109,7 +109,7 @@ export default function PrivacyPage() {
           Thông tin cá nhân của khách hàng sẽ được lưu trữ cho đến khi khách
           hàng có yêu cầu hủy bỏ hoặc khách hàng tự đăng nhập và thực hiện hủy
           bỏ. Trong mọi trường hợp thông tin cá nhân của khách hàng sẽ được bảo
-          mật trên máy chủ của PreKnow.
+          mật trên máy chủ của CostumeHaven.
         </p>
         <h2 className="my-4 text-base font-semibold text-heading sm:mb-5 sm:text-xl md:text-lg 2xl:mb-7 2xl:text-2xl">
           Không chia sẻ thông tin cá nhân khách hàng

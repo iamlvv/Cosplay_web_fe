@@ -20,6 +20,9 @@ const nextConfig = {
       'upload.wikimedia.org',
       'pickbazar-react.vercel.app',
       'salt.tikicdn.com',
+      'down-vn.img.susercontent.com',
+      'toplist.vn',
+      'gamelandvn.com'
     ],
   },
   ...(process.env.FRAMEWORK_PROVIDER === 'graphql' && {

@@ -1,11 +1,11 @@
 import { Routes } from '@/config/routes';
 
 export const siteSettings = {
-  name: 'PreKnow',
+  name: 'CostumeHaven',
   description: '',
   logo: {
     url: '/logo.svg',
-    alt: 'PreKnow',
+    alt: 'CostumeHaven Logo',
     href: '/grocery',
     width: 128,
     height: 40,
@@ -96,8 +96,8 @@ export const siteSettings = {
       name: 'RedQ, Inc',
       href: 'https://redq.io/',
     },
-    address: 'KTX Khu A - ĐHQG HCM',
-    email: 'contact.preknow@gmail.com',
+    address: 'ĐH Bách Khoa - ĐHQG TP.HCM',
+    email: 'contact@costumehaven.com',
     phone: '(917) 112-245',
     menus: [
       {
@@ -121,24 +121,24 @@ export const siteSettings = {
           },
         ],
       },
+      // {
+      //   title: 'Kênh người bán',
+      //   links: [
+      //     {
+      //       name: 'Trở thành người bán',
+      //       href: '/',
+      //     },
+      //     {
+      //       name: 'Quy định đăng bán',
+      //       href: '/',
+      //     },
+      //   ],
+      // },
       {
-        title: 'Kênh người bán',
+        title: 'Về CostumeHaven',
         links: [
           {
-            name: 'Trở thành người bán',
-            href: '/',
-          },
-          {
-            name: 'Quy định đăng bán',
-            href: '/',
-          },
-        ],
-      },
-      {
-        title: 'Về PreKnow',
-        links: [
-          {
-            name: 'Giới thiệu về PreKnow',
+            name: 'Giới thiệu về CostumeHaven',
             href: '/',
           },
           {

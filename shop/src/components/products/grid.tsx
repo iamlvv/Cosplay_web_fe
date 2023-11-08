@@ -39,7 +39,7 @@ export function Grid({
   column = 'auto',
 }: Props) {
   const { t } = useTranslation('common');
-
+  console.log(products);
   if (error) return <ErrorMessage message={error.message} />;
 
   if (!isLoading && !products?.length) {

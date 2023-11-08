@@ -32,7 +32,7 @@ const PreknowBanner: React.FC = () => {
   }, [intersection]);
 
   const handleClick = () => {
-    router.push('/search');
+    router.push('/search?category=le-hoi');
   };
 
   return (

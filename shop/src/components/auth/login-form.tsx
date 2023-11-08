@@ -142,7 +142,7 @@ export default function LoginView() {
         <PreknowLogo />
       </div>
       <p className="mt-4 mb-8 text-center text-sm text-body sm:mt-5 sm:mb-10 md:text-base">
-        Give used books better life
+        Every costume. Every occasion.
       </p>
       <LoginForm />
     </div>

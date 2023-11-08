@@ -5,37 +5,60 @@ type Props = {};
 
 const styles = {
   item: {
-    width: '197px',
+    width: '150px',
     fontSize: '20px',
   },
 };
 const categories = [
-  { name: 'Festivals', slug: 'van-hoc' },
-  { name: 'Events', slug: 'events' },
-  { name: 'Cosplay', slug: 'cosplay' },
-  { name: 'Art', slug: 'art' },
+  { name: 'Lễ hội', slug: 'le-hoi' },
+  { name: 'Sự kiện', slug: 'su-kien' },
+  { name: 'Hoá trang', slug: 'hoa-trang' },
+  { name: 'Nghệ thuật', slug: 'nghe-thuat' },
 ];
 
 const NavbarCategory = (props: Props) => {
+  const [activeItem, setActiveItem] = React.useState('');
+
   const router = useRouter();
-  const selectedValues = useMemo(
-    () =>
-      router.query.category ? (router.query.category as string).split(',') : [],
-    [router.query.category]
-  );
+  // if change the category, delete the subcategory params
+  React.useEffect(() => {
+    if (router.query.category) {
+      setActiveItem(router.query.category as string);
+      router.push({
+        pathname: router.pathname,
+        query: {
+          ...router.query,
+          subcategory: undefined,
+        },
+      });
+    }
+  }, [router.query.category]);
 
   return (
     <div className="flex items-center justify-center bg-white py-5 font-bold">
       <div style={styles.item} className="py-5">
-        Categories:
+        Danh mục:
       </div>
       <div className="flex items-center gap-x-5">
         {categories.map((category) => (
           <div
             key={category.slug}
             style={styles.item}
-            className="rounded-md border border-teal-600 py-5 text-center text-teal-600 transition ease-in-out hover:cursor-pointer hover:bg-teal-600 hover:text-white"
+            className={
+              activeItem === category.slug
+                ? 'select-none rounded-md border border-teal-600 bg-teal-600 py-2 text-center text-white'
+                : 'cursor-pointer rounded-md border border-teal-600 py-2 text-center text-teal-600 transition ease-in-out hover:bg-teal-600 hover:text-white'
+            }
             onClick={() => {
+              setActiveItem(category.slug);
+              // if activeitem is empty, direct to /search with no params
+              if (!category.slug) {
+                router.push({
+                  pathname: router.pathname,
+                  query: {},
+                });
+                return;
+              }
               router.push({
                 pathname: router.pathname,
                 query: {

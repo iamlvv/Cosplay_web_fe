@@ -44,6 +44,8 @@ const PreknowDetails: React.FC<Props> = ({ product }) => {
     dimension,
     numberOfPage,
     shop,
+    size,
+    subCategory,
   } = product ?? {};
 
   console.log('product: ', product);
@@ -57,7 +59,18 @@ const PreknowDetails: React.FC<Props> = ({ product }) => {
     baseAmount: product?.oldPrice ?? 0,
   });
 
-  const variations = product.variations;
+  const sizeList = size?.map((item) => {
+    return {
+      name: item,
+      _id: item,
+    };
+  });
+
+  const variations = {
+    sizeList: sizeList,
+  };
+
+  console.log('variations: ', variations);
 
   const isSelected = isVariationSelected(variations, attributes);
 
@@ -88,7 +101,7 @@ const PreknowDetails: React.FC<Props> = ({ product }) => {
                     {name}
                   </h1>
                 )}
-                {author && (
+                {/* {author && (
                   <div className="flex items-center space-x-5">
                     <p className="flex items-center text-sm font-normal text-slate-400">
                       Tác giả:
@@ -100,7 +113,7 @@ const PreknowDetails: React.FC<Props> = ({ product }) => {
                       </Link>
                     </p>
                   </div>
-                )}
+                )} */}
                 <PreknowRatingStar
                   rating={randomRating(numberOfReview)}
                   numberOfReview={numberOfReview}
@@ -162,6 +175,7 @@ const PreknowDetails: React.FC<Props> = ({ product }) => {
             {/* Variation section */}
             {hasVariations && (
               <PreknowVariationGroups
+                // variations={variations}
                 variations={variations}
                 variant="normal"
               />
@@ -183,7 +197,7 @@ const PreknowDetails: React.FC<Props> = ({ product }) => {
         </div>
       </div>
 
-      <Element
+      {/* <Element
         name="details"
         className="mb-7 rounded-md bg-light px-5 pt-5 pb-14"
       >
@@ -270,7 +284,7 @@ const PreknowDetails: React.FC<Props> = ({ product }) => {
             </button>
           </div>
         </div>
-      </Element>
+      </Element> */}
 
       <Element
         name="descriptions"

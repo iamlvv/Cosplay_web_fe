@@ -23,6 +23,7 @@ export default function ProductGridHome({
     });
   const productsItem: any = products;
 
+  console.log('productsItem', productsItem);
   return (
     <Grid
       products={productsItem}

@@ -66,7 +66,7 @@ const PreknowCategories: React.FC<{ variables: any }> = ({ variables }) => {
     },
 
     820: {
-      slidesPerView: 5,
+      slidesPerView: 4,
       spaceBetween: 20,
     },
   };
@@ -90,7 +90,9 @@ const PreknowCategories: React.FC<{ variables: any }> = ({ variables }) => {
           <span className="sr-only">{t('text-previous')}</span>
           <ArrowPrevIcon />
         </div>
-        <h3 className="text-2xl font-semibold md:text-4xl">Danh mục sách</h3>
+        <h3 className="text-2xl font-semibold md:text-4xl">
+          Danh mục trang phục
+        </h3>
         <div
           ref={(node) => setNextEl(node)}
           className="banner-slider-next flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-light text-heading shadow-300 outline-none transition-colors hover:text-orange-500 focus:outline-none"

@@ -184,6 +184,8 @@ export interface Product {
   numberOfPage: number;
   manufacture_at: string;
   dimension: string;
+  subCategory: string;
+  size: string[];
 }
 
 export interface RatingCount {

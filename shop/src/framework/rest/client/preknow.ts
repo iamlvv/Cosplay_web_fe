@@ -81,9 +81,12 @@ import {
 class PreknowClient {
   products = {
     all: ({ ...params }: Partial<ProductQueryOptions>) =>
-      HttpClient.get<ProductPaginator>(API_ENDPOINTS.PRODUCTS, {
-        ...params,
-      }),
+      HttpClient.get<ProductPaginator>(
+        'http://localhost:5001/store/products?',
+        {
+          ...params,
+        }
+      ),
     popular: (params: Partial<PopularProductQueryOptions>) =>
       HttpClient.get<Product[]>(API_ENDPOINTS.PRODUCTS_POPULAR, params),
 

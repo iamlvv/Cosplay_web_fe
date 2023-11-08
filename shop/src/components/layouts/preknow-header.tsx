@@ -86,7 +86,7 @@ const PreknowHeader = () => {
             <StaticMenu />
             <li className="hidden lg:inline-block xl:hidden">
               <Link
-                href={`${router.asPath}search`}
+                href="/search"
                 className="flex items-center font-normal text-heading no-underline transition duration-200 hover:text-accent focus:text-accent"
               >
                 {t('text-search')}

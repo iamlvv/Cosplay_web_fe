@@ -14,8 +14,14 @@ interface CartItemProps {
 
 const CartItem = ({ item }: CartItemProps) => {
   const { t } = useTranslation('common');
-  const { isInStock, clearItemFromCart, addItemToCart, removeItemFromCart, updateCartLanguage, language } =
-    useCart();
+  const {
+    isInStock,
+    clearItemFromCart,
+    addItemToCart,
+    removeItemFromCart,
+    updateCartLanguage,
+    language,
+  } = useCart();
 
   const { price } = usePrice({
     amount: item.price,
@@ -26,7 +32,7 @@ const CartItem = ({ item }: CartItemProps) => {
   function handleIncrement(e: any) {
     e.stopPropagation();
     // Check language and update
-    if (item?.language !== language){
+    if (item?.language !== language) {
       updateCartLanguage(item?.language);
     }
     addItemToCart(item, 1);

@@ -91,6 +91,8 @@ export interface ProductQueryOptions extends QueryOptions {
   searchType: string;
   searchQuery: string;
   text: string;
+  subcategory: string;
+  category: string;
 }
 
 export interface PopularProductQueryOptions extends QueryOptions {

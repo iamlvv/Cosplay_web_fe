@@ -16,11 +16,15 @@ const PreknowVariationGroups: React.FC<Props> = ({ variations, variant }) => {
       case 'conditions':
         return 'Tình trạng';
 
+      case 'sizeList':
+        return 'Kích thước';
+
       default:
         return str.replace(/-/g, ' ');
     }
   };
 
+  console.log(variations);
   return (
     <>
       {Object.keys(variations).map((variationName, index) => (

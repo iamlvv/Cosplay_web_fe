@@ -52,12 +52,12 @@ export const ContactPage = () => {
               </span>
               <div className="flex items-center justify-between">
                 <span className="text-sm text-body">
-                  https://preknow.vercel.app
+                  https://costumehaven.vercel.app
                 </span>
                 <a
-                  href="https://preknow.vercel.app"
+                  href="https://costumehaven.vercel.app"
                   target="_blank"
-                  rel="noreferrer"
+                  rel="noopener noreferrer"
                   className="text-sm font-semibold text-accent hover:text-accent-hover focus:text-blue-500 focus:outline-none"
                 >
                   {t('text-visit-site')}
