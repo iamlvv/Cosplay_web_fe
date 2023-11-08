@@ -1,36 +1,36 @@
 {
   "env": {
     "FRAMEWORK_PROVIDER": "rest",
-    "NEXT_PUBLIC_REST_API_ENDPOINT": "",
-    "NEXT_PUBLIC_GRAPHQL_API_ENDPOINT": "",
-    "NEXT_PUBLIC_SITE_URL": "",
-    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "",
-    "NEXTAUTH_URL": "",
-    "SECRET": "",
-    "GOOGLE_CLIENT_ID": "",
-    "GOOGLE_CLIENT_SECRET": "",
-    "NEXT_PUBLIC_ADMIN_URL": "",
+    "NEXT_PUBLIC_REST_API_ENDPOINT": "https://costumehaven.onrender.com",
+    "NEXT_PUBLIC_GRAPHQL_API_ENDPOINT": "http://localhost:4000/graphql",
+    "NEXT_PUBLIC_SITE_URL": "costumehaven.vercel.app",
+    "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "none",
+    "NEXTAUTH_URL": "costumehaven.vercel.app",
+    "SECRET": "anjfj31sniwn234njdsnmvoe023!",
+    "GOOGLE_CLIENT_ID": "424117363408-2lcrrb8e7jcdn655le84bvpotrgaf44r.apps.googleusercontent.com",
+    "GOOGLE_CLIENT_SECRET": "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",
+    "NEXT_PUBLIC_ADMIN_URL": "costumehaven.vercel.app/admin",
     "APPLICATION_MODE": "production",
-    "NEXT_PUBLIC_DEFAULT_LANGUAGE": "en",
+    "NEXT_PUBLIC_DEFAULT_LANGUAGE": "vi",
     "NEXT_PUBLIC_ENABLE_MULTI_LANG": "false",
-    "NEXT_PUBLIC_AVAILABLE_LANGUAGES": "en"
+    "NEXT_PUBLIC_AVAILABLE_LANGUAGES": "vi"
   },
   "build": {
     "env": {
       "FRAMEWORK_PROVIDER": "rest",
-      "NEXT_PUBLIC_REST_API_ENDPOINT": "",
-      "NEXT_PUBLIC_GRAPHQL_API_ENDPOINT": "",
-      "NEXT_PUBLIC_SITE_URL": "",
-      "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "",
-      "NEXTAUTH_URL": "",
-      "SECRET": "",
-      "GOOGLE_CLIENT_ID": "",
-      "GOOGLE_CLIENT_SECRET": "",
-      "NEXT_PUBLIC_ADMIN_URL": "",
+      "NEXT_PUBLIC_REST_API_ENDPOINT": "https://preknow-be.onrender.com",
+      "NEXT_PUBLIC_GRAPHQL_API_ENDPOINT": "http://localhost:4000/graphql",
+      "NEXT_PUBLIC_SITE_URL": "costumehaven.vercel.app",
+      "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY": "none",
+      "NEXTAUTH_URL": "costumehaven.vercel.app",
+      "SECRET": "anjfj31sniwn234njdsnmvoe023!",
+      "GOOGLE_CLIENT_ID": "424117363408-2lcrrb8e7jcdn655le84bvpotrgaf44r.apps.googleusercontent.com",
+      "GOOGLE_CLIENT_SECRET": "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",
+      "NEXT_PUBLIC_ADMIN_URL": "costumehaven.vercel.app/admin",
       "APPLICATION_MODE": "production",
-      "NEXT_PUBLIC_DEFAULT_LANGUAGE": "en",
+      "NEXT_PUBLIC_DEFAULT_LANGUAGE": "vi",
       "NEXT_PUBLIC_ENABLE_MULTI_LANG": "false",
-      "NEXT_PUBLIC_AVAILABLE_LANGUAGES": "en"
+      "NEXT_PUBLIC_AVAILABLE_LANGUAGES": "vi"
     }
   }
 }
