@@ -13,17 +13,17 @@ export default function ReturnPolicyPage() {
         </h1>
         <p className="px-0.5 text-sm text-body-dark md:text-base 2xl:text-lg">
           Chúng tôi luôn trân trọng sự tin tưởng và ủng hộ của quý khách hàng
-          khi lựa chọn mua sách tại PreKnow. Chúng tôi cam kết bảo vệ khách hàng
-          bằng chính sách Đổi trả/Hoàn tiền trên tinh thần bảo vệ quyền lợi
-          người tiêu dùng nhằm cam kết với quý khách về chất lượng sản phẩm và
-          dịch vụ tại PreKnow.
+          khi lựa chọn mua sản phẩm tại CostumeHaven. Chúng tôi cam kết bảo vệ
+          khách hàng bằng chính sách Đổi trả/Hoàn tiền trên tinh thần bảo vệ
+          quyền lợi người tiêu dùng nhằm cam kết với quý khách về chất lượng sản
+          phẩm và dịch vụ tại CostumeHaven.
         </p>
         <h2 className="my-4 text-base font-semibold text-heading sm:mb-5 sm:text-xl md:text-lg 2xl:mb-7 2xl:text-2xl">
-          Thời gian để gửi yêu cầu Đổi trả/Hoàn tiền cho PreKnow
+          Thời gian để gửi yêu cầu Đổi trả/Hoàn tiền cho CostumeHaven
         </h2>
         <p className="px-0.5 text-sm text-body-dark md:text-base 2xl:text-lg">
-          Thời gian tối đa để PreKnow tiếp nhận yêu cầu đổi trả là: 7 ngày từ
-          lúc đơn hàng được cập nhật trạng thái Lấy hàng thành công
+          Thời gian tối đa để CostumeHaven tiếp nhận yêu cầu đổi trả là: 7 ngày
+          từ lúc đơn hàng được cập nhật trạng thái Lấy hàng thành công
         </p>
         <h2 className="my-4 text-base font-semibold text-heading sm:mb-5 sm:text-xl md:text-lg 2xl:mb-7 2xl:text-2xl">
           Lý do Đổi trả/Hoàn tiền
@@ -49,7 +49,7 @@ export default function ReturnPolicyPage() {
           phẩm nhận được.
         </p>
         <p className="px-0.5 text-sm text-body-dark md:text-base 2xl:text-lg">
-          PreKnow có thể yêu cầu bổ sung bằng chứng nếu:
+          CostumeHaven có thể yêu cầu bổ sung bằng chứng nếu:
         </p>
         <ul className="list-disc px-8 text-sm text-body-dark md:text-base 2xl:text-lg">
           <li>
@@ -57,17 +57,17 @@ export default function ReturnPolicyPage() {
             sản phẩm nhận được,...
           </li>
           <li>
-            Người bán khiếu nại yêu cầu của bạn và PreKnow cần thêm bằng chứng
-            để xem xét
+            Người bán khiếu nại yêu cầu của bạn và CostumeHaven cần thêm bằng
+            chứng để xem xét
           </li>
         </ul>
         <h2 className="my-4 text-base font-semibold text-heading sm:mb-5 sm:text-xl md:text-lg 2xl:mb-7 2xl:text-2xl">
           Tình trạng của hàng trả lại
         </h2>
         <p className="px-0.5 text-sm text-body-dark md:text-base 2xl:text-lg">
-          Sau khi đã gửi yêu cầu Đổi trả/Hoàn tiền, nếu PreKnow và Người bán
-          đồng ý cho bạn trả hàng, bạn cần gửi trả hàng Người bán theo hướng dẫn
-          qua email.
+          Sau khi đã gửi yêu cầu Đổi trả/Hoàn tiền, nếu CostumeHaven và Người
+          bán đồng ý cho bạn trả hàng, bạn cần gửi trả hàng Người bán theo hướng
+          dẫn qua email.
         </p>
         <p className="px-0.5 text-sm text-body-dark md:text-base 2xl:text-lg">
           Để hạn chế các rắc rối phát sinh liên quan đến trả hàng, bạn lưu ý:
@@ -80,8 +80,8 @@ export default function ReturnPolicyPage() {
           <li>Sản phẩm gửi trả phải trong tình trạng như khi nhận hàng</li>
         </ul>
         <p className="px-0.5 text-sm text-body-dark md:text-base 2xl:text-lg">
-          Sau khi nhận được sản phẩm bạn gửi về, PreKnow sẽ phản hồi và cập nhật
-          thông tin trên từng giai đoạn xử lý đến bạn qua email.
+          Sau khi nhận được sản phẩm bạn gửi về, CostumeHaven sẽ phản hồi và cập
+          nhật thông tin trên từng giai đoạn xử lý đến bạn qua email.
         </p>
         <p className="px-0.5 text-sm text-body-dark md:text-base 2xl:text-lg">
           Khuyến khích bạn chuẩn bị thêm các bằng chứng sau để làm bằng chứng
@@ -98,17 +98,18 @@ export default function ReturnPolicyPage() {
           Phí gửi trả hàng
         </h2>
         <p className="px-0.5 text-sm text-body-dark md:text-base 2xl:text-lg">
-          Miễn phí trả hàng khi yêu cầu trả hàng được chấp thuận bởi PreKnow.
+          Miễn phí trả hàng khi yêu cầu trả hàng được chấp thuận bởi
+          CostumeHaven.
         </p>
 
         <h2 className="my-4 text-base font-semibold text-heading sm:mb-5 sm:text-xl md:text-lg 2xl:mb-7 2xl:text-2xl">
           Thời gian hoàn tiền
         </h2>
         <p className="px-0.5 text-sm text-body-dark md:text-base 2xl:text-lg">
-          Thời gian hoàn tiền được bắt đầu tính kể từ thời điểm PreKnow nhận
-          được hàng hoàn trả từ bạn và xác nhận với bạn về việc hàng hoàn trả
-          đáp ứng đủ các điều kiện trả hàng. Thời gian cụ thể sẽ được thông báo
-          đến bạn qua email.
+          Thời gian hoàn tiền được bắt đầu tính kể từ thời điểm CostumeHaven
+          nhận được hàng hoàn trả từ bạn và xác nhận với bạn về việc hàng hoàn
+          trả đáp ứng đủ các điều kiện trả hàng. Thời gian cụ thể sẽ được thông
+          báo đến bạn qua email.
         </p>
         <h2 className="my-4 text-base font-semibold text-heading sm:mb-5 sm:text-xl md:text-lg 2xl:mb-7 2xl:text-2xl">
           Bản Cập nhật ngày 31/07/2022
