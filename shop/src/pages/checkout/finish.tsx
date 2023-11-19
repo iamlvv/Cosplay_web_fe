@@ -36,7 +36,7 @@ export default function CheckoutPage() {
             <Image src={Banner} alt="banner-checkout-preknow" />
             <div className="w-full rounded border bg-light p-4 shadow">
               <h2 className="mb-8 text-xl font-semibold text-slate-600">
-                Cảm ơn bạn đã lựa chọn mua hàng tại PreKnow
+                Cảm ơn bạn đã lựa chọn mua hàng tại CostumeHaven
               </h2>
               <div className="mb-8 flex items-center justify-between">
                 <div className="flex items-center">

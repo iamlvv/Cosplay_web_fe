@@ -12,21 +12,21 @@ export default function ShippingMethodPage() {
           Phương thức vận chuyển
         </h1>
         <p className="px-0.5 text-sm text-body-dark md:text-base 2xl:text-lg">
-          Hiện tại PreKnow có các hình thức giao hàng như sau:
+          Hiện tại CostumeHaven có các hình thức giao hàng như sau:
         </p>
         <h2 className="my-4 text-base font-semibold text-heading sm:mb-5 sm:text-xl md:text-lg 2xl:mb-7 2xl:text-2xl">
           Sự chấp thuận
         </h2>
         <p className="px-0.5 text-sm text-body-dark md:text-base 2xl:text-lg">
-          Bằng việc trao cho chúng tôi thông tin cá nhân của bạn, PreKnow cam
-          kết rằng thông tin cá nhân của bạn sẽ được thu thập, sử dụng như được
-          nêu trong Chính sách này. Nếu bạn không đồng ý với Chính sách này, bạn
-          có thể dừng cung cấp cho chúng tôi bất cứ thông tin cá nhân nào
-          và/hoặc sử dụng các quyền như được nêu tại Mục 7 dưới đây. Chúng tôi
-          bảo lưu quyền sửa đổi, bổ sung nhằm hoàn thiện đối với Chính Sách này
-          vào bất kỳ thời điểm nào. Và với mọi thay đổi về Chính sách bảo mật
-          của mình, chúng tôi sẽ thông báo đến khách hàng thông qua các nền tảng
-          thông tin chính thức.
+          Bằng việc trao cho chúng tôi thông tin cá nhân của bạn, CostumeHaven
+          cam kết rằng thông tin cá nhân của bạn sẽ được thu thập, sử dụng như
+          được nêu trong Chính sách này. Nếu bạn không đồng ý với Chính sách
+          này, bạn có thể dừng cung cấp cho chúng tôi bất cứ thông tin cá nhân
+          nào và/hoặc sử dụng các quyền như được nêu tại Mục 7 dưới đây. Chúng
+          tôi bảo lưu quyền sửa đổi, bổ sung nhằm hoàn thiện đối với Chính Sách
+          này vào bất kỳ thời điểm nào. Và với mọi thay đổi về Chính sách bảo
+          mật của mình, chúng tôi sẽ thông báo đến khách hàng thông qua các nền
+          tảng thông tin chính thức.
         </p>
         <h2 className="my-4 text-base font-semibold text-heading sm:mb-5 sm:text-xl md:text-lg 2xl:mb-7 2xl:text-2xl">
           Giao hàng tiết kiệm
