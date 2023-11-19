@@ -93,7 +93,7 @@ const Search: React.FC<SearchProps> = ({
         id="search"
         {...register('searchText')}
         className={rootClassName}
-        placeholder={t('form:input-placeholder-search')}
+        placeholder={'Tìm kiếm sản phẩm'}
         aria-label="Search"
         autoComplete="off"
         {...rest}
