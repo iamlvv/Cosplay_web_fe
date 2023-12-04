@@ -33,7 +33,7 @@ export default function CheckoutPage() {
       <div className="bg-gray-100 px-4 py-8 lg:py-10 lg:px-8 xl:py-14 xl:px-16 2xl:px-20">
         <div className="m-auto flex w-full max-w-5xl flex-col items-center rtl:space-x-reverse lg:flex-row lg:items-start lg:space-x-8">
           <div className="w-full space-y-6 lg:max-w-2xl">
-            <Image src={Banner} alt="banner-checkout-preknow" />
+            {/* <Image src={Banner} alt="banner-checkout-preknow" /> */}
             <div className="w-full rounded border bg-light p-4 shadow">
               <h2 className="mb-8 text-xl font-semibold text-slate-600">
                 Cảm ơn bạn đã lựa chọn mua hàng tại CostumeHaven
@@ -55,15 +55,14 @@ export default function CheckoutPage() {
                 </div>
               </div>
               <div className="grid gap-y-4">
-                <p>
+                {/* <p>
                   Bạn có thể xem lại{' '}
                   <span className="text-accent">đơn hàng của tôi</span>
                 </p>
-                <p className="text-accent">Quản lý đơn hàng</p>
+                <p className="text-accent">Quản lý đơn hàng</p> */}
                 <div className="flex">
                   <ShippingIcon className="mr-2" />
-                  Thời gian dự kiến giao hàng vào Thứ 7, 19/11/2022 - Chủ nhật,
-                  20/11/2022
+                  Thời gian dự kiến giao hàng vào 19/12/2023 - 20/12/2023
                 </div>
                 <p>
                   Thông tin chi tiết về đơn hàng đã được gửi đến địa chỉ mail{' '}

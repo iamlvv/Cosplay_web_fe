@@ -31,12 +31,12 @@ function LoginForm() {
   const { mutate: login, isLoading, serverError, setServerError } = useLogin();
 
   function onSubmit({ email, password }: LoginUserInput) {
+    console.log('email: ', email, 'password: ', password);
     login({
       email,
       password,
     });
   }
-
   return (
     <>
       <Alert

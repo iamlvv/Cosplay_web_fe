@@ -18,9 +18,9 @@ export const RightSideView = ({
       <div className="mb-6 w-full rounded border bg-light p-4 shadow">
         <div className="mb-5 flex justify-between">
           <h2 className="text-xl font-semibold text-slate-600">Giao tới</h2>
-          <Link href={Routes.profile}>
+          {/* <Link href={Routes.profile}>
             <a className="text-accent">Thay đổi</a>
-          </Link>
+          </Link> */}
         </div>
         <div>
           <div className="mb-1 flex justify-between text-base font-semibold text-heading">

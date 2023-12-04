@@ -35,9 +35,9 @@ const UnverifiedItemList = ({ hideTitle = false }: { hideTitle?: boolean }) => {
         {!hideTitle && (
           <div className="mb-5 flex justify-between">
             <h2 className="text-xl font-semibold text-slate-600">Đơn hàng</h2>
-            <Link href={Routes.home}>
+            {/* <Link href={Routes.home}>
               <a className="text-accent">Thay đổi</a>
-            </Link>
+            </Link> */}
           </div>
         )}
         <div className="flex flex-col border-b border-border-200 py-3">
